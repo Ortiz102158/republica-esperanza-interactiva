@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/republica-esperanza-interactiva/static/css/main.f90519c3.css",
+    "main.js": "/republica-esperanza-interactiva/static/js/main.70446b74.js",
+    "static/js/453.b6370996.chunk.js": "/republica-esperanza-interactiva/static/js/453.b6370996.chunk.js",
+    "index.html": "/republica-esperanza-interactiva/index.html",
+    "main.f90519c3.css.map": "/republica-esperanza-interactiva/static/css/main.f90519c3.css.map",
+    "main.70446b74.js.map": "/republica-esperanza-interactiva/static/js/main.70446b74.js.map",
+    "453.b6370996.chunk.js.map": "/republica-esperanza-interactiva/static/js/453.b6370996.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f90519c3.css",
+    "static/js/main.70446b74.js"
+  ]
+}
