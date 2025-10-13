@@ -266,5 +266,5 @@ const App = () => {
     </div>
   );
 };
-
+// Última actualización: forzar redeploy en Vercel
 export default App;
