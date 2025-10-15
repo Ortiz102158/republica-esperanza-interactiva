@@ -310,7 +310,6 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
             <strong>Del Movimiento Por la Salvación de la República (MSR)</strong>
           </p>
           <div className="space-y-4 text-base">
-            {/* Contenido completo de la Declaración de Principios aquí */}
             <p>
               En este momento en donde todo parece necesitar nuevas definiciones, donde las aspiraciones y las esperanzas parecen inalcanzables para los pobres (obreros (as), campesinos (as), mujeres, dominico-haitianos (as), chiriperos (as), jóvenes, niños y niñas). Hombres y Mujeres que hemos soñados por más de dos décadas con una República Democrática, Popular, Revolucionaria, humana, Nos resistimos a dejar de soñar y luchar contra la desigualdad, el individualismo, la opresión del capitalismo salvaje, local e imperial.
             </p>
@@ -407,7 +406,6 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
           <h3 className="text-xl font-bold mb-4">ACTUALIDAD Y COYUNTURA</h3>
           
           <div className="space-y-6 text-base">
-            {/* Contenido completo de Internacional aquí */}
             <p>
               La geopolítica mundial entre 2014 y 2025 ha sido testigo de una profunda transformación en el orden internacional, marcada por la transición de un sistema unipolar liderado por Estados Unidos hacia un mundo multipolar caracterizado por tensiones crecientes entre grandes potencias, la reconfiguración de alianzas y la emergencia de nuevos actores globales. Este período ha estado dominado por conflictos regionales, rivalidades estratégicas, crisis económicas y sociales, y desafíos globales como el cambio climático y la pandemia de COVID-19.
             </p>
@@ -458,11 +456,40 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-2">Neoliberalismo: Causas y Consecuencias</h4>
+              <h4 className="font-bold text-lg mb-2">Perspectivas hacia 2025</h4>
               <p>
-                El neoliberalismo es una corriente económica que surgió como reacción al socialismo y al movimiento obrero. Se caracteriza por la defensa del libre mercado, la privatización de servicios públicos, la reducción del papel del Estado y la promoción de la globalización.
+                Para 2025, el mundo se encuentra en una encrucijada. La era de la hegemonía estadounidense ha dado paso a un sistema multipolar donde China, Rusia, la Unión Europea, India y otras potencias regionales compiten por influencia. Sin embargo, esta multipolaridad no ha traído estabilidad; por el contrario, ha incrementado la incertidumbre y el riesgo de confrontaciones directas.
               </p>
-              <p className="mt-2"><strong>Consecuencias:</strong></p>
+              <p className="mt-2">
+                Las democracias liberales enfrentan desafíos internos y externos, desde el auge del populismo hasta la erosión de las instituciones multilaterales. Por su parte, las potencias emergentes han demostrado una notable capacidad de adaptación, utilizando tecnología y propaganda para consolidar su poder.
+              </p>
+              <p className="mt-2">
+                En este contexto, la cooperación internacional sigue siendo esencial para abordar desafíos globales como el cambio climático, la seguridad alimentaria y la proliferación nuclear. Sin embargo, la falta de confianza entre las grandes potencias dificulta la construcción de soluciones colectivas. El futuro dependerá de la habilidad de los líderes mundiales para navegar este complejo panorama y encontrar puntos de convergencia en medio de la divergencia.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-lg mb-2">Conclusión</h4>
+              <p>
+                La geopolítica entre 2014 y 2025 ha sido testigo de cambios fundamentales que han redefinido el orden global. Desde la reunificación de Crimea hasta la guerra en Ucrania, pasando por la pandemia de COVID-19 y la rivalidad entre China y Estados Unidos, estos años han estado marcados por la volatilidad y la incertidumbre. A medida que nos acercamos a 2025, queda claro que el mundo está entrando en una nueva era de competencia estratégica y realineamientos políticos. La pregunta clave es si las naciones podrán superar sus diferencias y trabajar juntas para enfrentar los desafíos compartidos, o si el mundo seguirá fragmentándose en bloques rivales.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-lg mb-2">Neoliberalismo: Causas y Consecuencias para la Humanidad</h4>
+              <p>
+                El neoliberalismo es una corriente económica, política y social que surgió en el siglo XX como una reacción al socialismo y en particular contra el movimiento obrero por ser la base de sustentacion del mismo, la atomizacion de la clase obrera permitio una lucha potencializada contra los paises socialistas a vez que impedia el surgimientos de nuevos Estados obrero, socialistas y democracias populares , la tesis de lucha contra intervencionismo estatal y a las políticas keynesianas como despojos de las conquistas de movimiento que predominaron tras la Segunda Guerra Mundial. Se caracteriza por la defensa del libre mercado, la privatización de los servicios públicos, la reducción del papel del Estado en la economía y la promoción de la globalización. A continuación, se analizan sus causas, consecuencias y su impacto en la humanidad.
+              </p>
+              <p className="mt-2 font-bold">Causas del Neoliberalismo:</p>
+              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li>Crisis del Estado de Bienestar (Keynesianismo)</li>
+                <li>Influencia de las Escuelas Económicas Neoliberales (Hayek, Friedman)</li>
+                <li>Globalización Económica</li>
+                <li>Revolución Tecnológica y Financiera</li>
+                <li>Políticas de Gobiernos Clave (Thatcher, Reagan)</li>
+              </ul>
+              <p className="mt-2 font-bold">Consecuencias:</p>
+              <p className="mt-2"><strong>Aspectos Negativos:</strong></p>
               <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
                 <li>Exacerbación de desigualdades sociales y económicas</li>
                 <li>Precarización laboral</li>
@@ -475,10 +502,26 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-2">Deuda y Dependencia en el Sur Global</h4>
+              <h4 className="font-bold text-lg mb-2">Deuda y Dependencia en Países en Desarrollo</h4>
               <p>
-                La deuda externa y la dependencia económica perpetúan estructuras de desigualdad global. Los países en desarrollo enfrentan limitación del gasto público, aumento de pobreza, y pérdida de soberanía debido a préstamos condicionados del FMI y Banco Mundial.
+                La deuda externa y la dependencia económica perpetúan estructuras de desigualdad global. Los países en desarrollo enfrentan limitación del gasto público, aumento de pobreza y pérdida de soberanía debido a préstamos condicionados del FMI y Banco Mundial.
               </p>
+              <p className="mt-2"><strong>Generadores de la deuda global:</strong></p>
+              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li>Sistema financiero globalizado (FMI, BM)</li>
+                <li>Crisis financieras globales (2008, pandemia)</li>
+                <li>Dependencia de exportaciones de materias primas</li>
+                <li>Especulación financiera</li>
+                <li>Cambio climático y desastres naturales</li>
+              </ul>
+              <p className="mt-2"><strong>Consecuencias para el Sur Global:</strong></p>
+              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
+                <li>Sobrecarga fiscal</li>
+                <li>Dependencia externa</li>
+                <li>Vulnerabilidad económica</li>
+                <li>Impacto social (pobreza, desigualdad, migración)</li>
+                <li>Pérdida de soberanía</li>
+              </ul>
               <p className="mt-2"><strong>Soluciones propuestas:</strong> reestructuración de deuda, financiamiento alternativo, regulación financiera global, diversificación económica y justicia climática.</p>
             </div>
 
@@ -486,6 +529,9 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
               <h4 className="font-bold text-lg mb-2">El Movimiento Obrero (1980-2025)</h4>
               <p>
                 En las últimas décadas, el movimiento obrero ha enfrentado desindustrialización, precarización laboral y políticas neoliberales. Sin embargo, ha surgido nueva organización en la "gig economy", resistencia en el Sur Global, y mayor participación de mujeres con enfoque interseccional.
+              </p>
+              <p className="mt-2">
+                El futuro del movimiento obrero dependerá de su capacidad para adaptarse a las nuevas realidades del trabajo y construir una agenda inclusiva. En un mundo donde las desigualdades siguen aumentando, el movimiento obrero sigue siendo una fuerza vital para la justicia social y la dignidad laboral.
               </p>
             </div>
           </div>
