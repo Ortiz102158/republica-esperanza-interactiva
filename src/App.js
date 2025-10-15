@@ -478,7 +478,7 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
             <div>
               <h4 className="font-bold text-lg mb-2">Neoliberalismo: Causas y Consecuencias para la Humanidad</h4>
               <p>
-                El neoliberalismo es una corriente económica, política y social que surgió en el siglo XX como una reacción al socialismo y en particular contra el movimiento obrero por ser la base de sustentacion del mismo, la atomizacion de la clase obrera permitio una lucha potencializada contra los paises socialistas a vez que impedia el surgimientos de nuevos Estados obrero, socialistas y democracias populares , la tesis de lucha contra intervencionismo estatal y a las políticas keynesianas como despojos de las conquistas de movimiento que predominaron tras la Segunda Guerra Mundial. Se caracteriza por la defensa del libre mercado, la privatización de los servicios públicos, la reducción del papel del Estado en la economía y la promoción de la globalización. A continuación, se analizan sus causas, consecuencias y su impacto en la humanidad.
+                El neoliberalismo es una corriente económica, política y social que surgió en el siglo XX como una reacción al socialismo y en particular contra el movimiento obrero. Se caracteriza por la defensa del libre mercado, la privatización de los servicios públicos, la reducción del papel del Estado en la economía y la promoción de la globalización.
               </p>
               <p className="mt-2 font-bold">Causas del Neoliberalismo:</p>
               <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
@@ -504,24 +504,8 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
             <div>
               <h4 className="font-bold text-lg mb-2">Deuda y Dependencia en Países en Desarrollo</h4>
               <p>
-                La deuda externa y la dependencia económica perpetúan estructuras de desigualdad global. Los países en desarrollo enfrentan limitación del gasto público, aumento de pobreza y pérdida de soberanía debido a préstamos condicionados del FMI y Banco Mundial.
+                La deuda externa y la dependencia económica perpetúan estructuras de desigualdad global. Los países en desarrollo enfrentan limitación del gasto público, aumento de pobreza, y pérdida de soberanía debido a préstamos condicionados del FMI y Banco Mundial.
               </p>
-              <p className="mt-2"><strong>Generadores de la deuda global:</strong></p>
-              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Sistema financiero globalizado (FMI, BM)</li>
-                <li>Crisis financieras globales (2008, pandemia)</li>
-                <li>Dependencia de exportaciones de materias primas</li>
-                <li>Especulación financiera</li>
-                <li>Cambio climático y desastres naturales</li>
-              </ul>
-              <p className="mt-2"><strong>Consecuencias para el Sur Global:</strong></p>
-              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Sobrecarga fiscal</li>
-                <li>Dependencia externa</li>
-                <li>Vulnerabilidad económica</li>
-                <li>Impacto social (pobreza, desigualdad, migración)</li>
-                <li>Pérdida de soberanía</li>
-              </ul>
               <p className="mt-2"><strong>Soluciones propuestas:</strong> reestructuración de deuda, financiamiento alternativo, regulación financiera global, diversificación económica y justicia climática.</p>
             </div>
 
@@ -529,9 +513,6 @@ La verdadera democracia no se impone con decretos imperiales, sino que florece d
               <h4 className="font-bold text-lg mb-2">El Movimiento Obrero (1980-2025)</h4>
               <p>
                 En las últimas décadas, el movimiento obrero ha enfrentado desindustrialización, precarización laboral y políticas neoliberales. Sin embargo, ha surgido nueva organización en la "gig economy", resistencia en el Sur Global, y mayor participación de mujeres con enfoque interseccional.
-              </p>
-              <p className="mt-2">
-                El futuro del movimiento obrero dependerá de su capacidad para adaptarse a las nuevas realidades del trabajo y construir una agenda inclusiva. En un mundo donde las desigualdades siguen aumentando, el movimiento obrero sigue siendo una fuerza vital para la justicia social y la dignidad laboral.
               </p>
             </div>
           </div>
