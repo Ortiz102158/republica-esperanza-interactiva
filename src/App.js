@@ -1,793 +1,923 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Mail, Users, Globe, Scale, Heart, Newspaper, Landmark, HandCoins, Sun, Moon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-export default function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState(null);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [darkMode, setDarkMode] = useState(true);
-  const [filterCategory, setFilterCategory] = useState('Todos');
-
-  const sectionRefs = {
-    hero: useRef(null),
-    principios: useRef(null),
+const App = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [activeSection, setActiveSection] = useState('inicio');
+  const sections = {
+    inicio: useRef(null),
+    sobreNosotros: useRef(null),
     valores: useRef(null),
+    teologiaLiberacion: useRef(null),
     internacional: useRef(null),
     diaspora: useRef(null),
-    derechos: useRef(null),
-    articulos: useRef(null),
-    actividades: useRef(null),
-    donaciones: useRef(null),
-    contacto: useRef(null)
+    derechosHumanos: useRef(null),
+    colaboracion: useRef(null),
+    donaciones: useRef(null)
   };
 
-  // Artículos oficiales + colaboración externa
-  const articles = [
-    {
-      id: "tabaco-cigarro-dominicanos",
-      title: "Tabaco y Cigarro son dominicanos",
-      author: "Ing. Francisco Matos Mancebo — Editor HLM / Humo Latino",
-      date: "2025-04-06",
-      category: "Soberanía Cultural",
-      content: `El Diputado del Tabaco
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-Desde que el ser humano pasó de la vida nómada a la sedentaria inició un proceso de identificación, sistematización, clasificación y nominación de los elementos de su hábitat. Por tanto, podemos rastrear los primeros pasos de esa hierba santa (Nicotiana Tabacum) que hoy llamamos tabaco, desde que el ser humano la identificó y diferenció. Esta planta anual de la familia de las solanáceas, de acuerdo con investigaciones e inferencias científicas, es oriunda de América tropical y amazónica, más específicamente de Ecuador y Perú.
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo.');
+    setFormData({ name: '', email: '', message: '' });
+  };
 
-Cabe destacar que su producción no representa, en modo alguno, el peligro infernal para la salud que preconizan sus enemigos tendenciosos, pues se trata de un activo inapreciable y un regalo para la humanidad. Como todos los elementos de los reinos de la naturaleza –mineral, vegetal y animal– puede usarse para bienestar o malestar. Como activo de la modernidad es generador de riqueza, soporte de multinacionales y destino preferente de leyes impositivas, pero como producto de consumo es universal e inherente a la civilización.
-
-Juzgo imprescindible aclarar que, aunque la planta de tabaco es originaria de Sudamérica, está comprobado que para la producción adecuada y efectiva de las hojas destinadas a la elaboración de cigarros premium, los mejores suelos están en las Antillas Mayores: Puerto Rico, Jamaica y básicamente la República Dominicana y Cuba. Estas dos últimas, las islas principales donde los colonizadores descubrieron su existencia y el uso que los «indios» le daban.
-
-BREVE HISTORIA
-
-A raíz del descubrimiento de América, los colonizadores españoles fueron los primeros en dar cuenta de la existencia del tabaco al viejo continente. Al llegar a las islas del Caribe, el 12 de octubre de 1492, en Guanahani –bautizada como San Salvador, hoy Bahamas–, tuvieron conocimiento de la existencia de la planta aromática, pues los nativos les presentaron “hojas secas que desprendían una fragancia peculiar”.
-
-Su primera referencia sobre el tabaco fue un par de días después de descubrir la primera isla de San Salvador, cuando Cristóbal Colón explica cómo encontró a un indio en una pequeña canoa, y en ella llevaba “unas hojas secas que deben ser cosas muy apreciadas entre ellos, porque ya me trajeron en San Salvador de ellas”. El Almirante prosiguió su travesía y el 27 de octubre arribó a la isla de Cuba, que llamaron Juana, y en esa escala encontraron nuevamente tabaco. Está documentado que los marineros Rodrigo de Jerez y Luis de Torres, enviados a explorar tierra firme el 2 de noviembre, vieron por primera vez a los nativos fumar.
-
-El “Diario de Colón” relata: “Hallaron los dos cristianos por el camino mucha gente que atravesaban a sus pueblos, mujeres y hombres, con un tizón en la mano y yerbas para tomar sus sahumerios, que acostumbraban”. Los enviados observaron a los nativos hacer rollos de hojas de palma y maíz “a la manera de un mosquetón de papel” con tabaco dentro, al que uno encendía de un lado y bebía el humo que echaba el otro.
-
-Colón zarpó de Cuba y el 5 de diciembre arribó a Quisqueya, actual isla de Santo Domingo bautizada entonces como La Española, donde desembarcaron por fuerza el 24 de diciembre, tras encallar la carabela Santa María. Fueron bien acogidos por el cacique Guacanagarix, quien les ofreció albergue y dispuso ayuda para rescatar los restos de la embarcación y sus provisiones. Esto sucedió en la bahía de San Nicolás, donde construyeron su primer asentamiento en el Nuevo Mundo, el Fuerte de la Navidad, en alusión a la fecha citada.
-
-Colón y sus hombres permanecieron en el cacicazgo de Marién hasta el 16 de enero de 1493, cuando emprendieron su regreso a España, dejando en el fuerte a 39 de sus compañeros. En la tripulación iba Alejandro de Jerez, quien llevó consigo hojas de tabaco secas y la costumbre de fumarlas: práctica vista en Cuba, pero aprendida en La Española, durante su convivencia amigable.
-
-PRIMEROS INFORMES
-
-El tabaco no ocupó un lugar destacado entre las exportaciones de productos dominicanos a Sevilla durante el siglo XVI, a pesar de que el término “tabaco” aparece como tal desde 1529, y desde La Española se producían las primeras noticias sobre la planta, de su uso por los colonizadores europeos y sus efectos de dependencia entre quienes lo consumían.
-
-El andaluz (y sevillano) Fray Bartolomé Las Casas escribió: “españoles conocí yo en esta isla Española que lo acostumbraban tomar (el tabaco), que siendo reprendidos por ello diciéndoles que aquello era vicio, respondían que no era de su mano dejarlo; no sé qué sabor o provecho hallaban en ello”.
-
-El Tabaco fue, sin duda, el cultivo más difundido de América desde antes de la llegada de los españoles. Hay evidencias de que era sembrado formalmente y domesticado en todo el continente, y aunque su origen se establece en la región amazónica –como se dijo antes–, pasó a los grupos del Orinoco en el sur de la actual Venezuela, y los Arahuacos lo trajeron a las islas del caribe.
-
-Una vez aquí, los Tainos –asentados básicamente en la isla de Santo Domingo– fue el primer grupo que lo domesticó y convirtió en cultivo regular.
-
-Los europeos se extrañaron mucho porque nunca habían visto a alguien echando humo por boca y nariz, pero no fue el único uso que encontraron entre los aborígenes. Además de aspirar el humo de las hojas secas en combustión, los indígenas también masticaban tabaco, lo aspiraban por la nariz, lo comían en una especie de ensalada, se bebía, lo untaban sobre el cuerpo para combatir enfermedades de la piel, y se usaba en gotas para los ojos y en enemas.
-
-Tenía también usos rituales, como soplarlo sobre los guerreros antes de la lucha y esparcirlo en los campos antes de la siembra; era ofrenda para los dioses, se derramaba sobre las mujeres previo a una relación sexual; se untaba en el cuerpo de las embarazadas, y tanto hombres como mujeres lo consumían como narcótico.
-
-EL VIEJO CONTINENTE
-
-Tras regresar a España y continuar su práctica de fumar tabaco, la historia registra que Rodrigo de Jerez fue denunciado por vecinos y familiares, quienes asombrados al verlo echar chorros de humo todo el día provocaron su arresto por la Santa Inquisición, que lo encarceló durante siete años, ya que “solamente el Diablo podía hacer que un hombre vote humo por boca y nariz”.
-
-En el viejo continente, el hábito de fumar y el uso del tabaco se fue generalizando gracias a los marinos, quienes lo masticaban y aspiraban su polvo. Pero se extendió de tal manera que algunos reyes adoptaron medidas radicales para impedir que la gente lo adoptara.
-
-Prusia, por ejemplo, castigaba al fumador con una paliza, pero si insistía se le cortaba la nariz y finalmente, ante una situación de desobediencia, le degollaban. En Turquía se aplicaba la pena de muerte, y en la Inglaterra del siglo XVI no sólo se prohibió fumar, sino que entre los posibles castigos estaba también la pena capital.
-
-No obstante, bastaron unos pocos años para que los Estados pasaran de las restricciones a fomentar la siembra y estimular el consumo con todos los medios a su alcance –propaganda incluida–, por lo que en toda Europa, Asia (incluyendo el Medio Oriente), África, etcétera, se introdujo el cultivo, sumándose a América entera países como Brasil, entonces colonia portuguesa.
-
-El tabaco fue, es y será un viajero preferente en el carrusel del tiempo, que se ha ocupado de ubicarlo en lugares más respetables. Por tanto, durante su trayectoria histórica los gobiernos advirtieron que podía generar grandes riquezas y se reservaron su comercialización o lo grabaron con impuestos especiales.
-
-EL TABACO ES DOMINICANO
-
-Lo expuesto anteriormente nos ofrece la certidumbre de que los españoles aprendieron la práctica de enrollar hojas de tabaco y fumarlas en la isla de Santo Domingo, y desde aquí se llevaron a Europa incluso sus semillas (lo que se atribuye a Fray Ramón Pané, entre 1510 y 1512).
-
-Resultado de distintas investigaciones, podemos afirmar que en Santo Domingo se estableció la primera plantación en 1533, y entre 1529 y 1531 se exportaron hojas a Sevilla, España. Por tales razones nos sentimos con todo derecho a decir que respecto del tabaco, como se le conoce hoy en día, todo empezó aquí, y por cuanto a su cultivo formal, procesamiento, comercialización y uso, es de origen dominicano.`
-    },
-    {
-      id: "tabaco-industria",
-      title: "El tabaco no es un vicio individual, es una estrategia de la industria",
-      date: "2025-04-05",
-      category: "Salud",
-      content: `La industria tabacalera sigue lucrando con la salud de millones, especialmente en barrios populares y países del Sur Global. A través de publicidad engañosa, sabores atractivos para adolescentes y presión política, las grandes corporaciones como Philip Morris y British American Tobacco evaden regulaciones y expanden su mercado entre los más vulnerables.
-
-En América Latina, el 80% de las muertes por cáncer de pulmón están vinculadas al tabaco, y los gastos en salud pública superan con creces los impuestos recaudados. El Movimiento Social Revolucionario (MSR) exige:
-- Prohibición total de la publicidad, promoción y patrocinio de productos de tabaco.
-- Impuestos progresivos que desincentiven el consumo y financien campañas de cesación.
-- Apoyo a pequeños agricultores para transitar hacia cultivos alternativos sostenibles.
-
-Defender la vida es luchar contra las corporaciones que la mercantilizan. ¡El humo del cigarro no es libertad: es opresión disfrazada de elección!`
-    },
-    {
-      id: "palestina",
-      title: "¡Alto al genocidio en Palestina! Exigimos justicia y soberanía",
-      date: "2025-04-04",
-      category: "Internacional",
-      content: `Mientras el mundo mira en silencio, el pueblo palestino enfrenta uno de los asedios más brutales de la historia reciente. Bombardeos indiscriminados, desplazamientos forzados, bloqueo de ayuda humanitaria y destrucción de infraestructura son crímenes de lesa humanidad que no pueden seguir normalizándose.
-
-El Movimiento Social Revolucionario (MSR) se suma a la voz global que exige:
-- Cese inmediato de las agresiones militares israelíes.
-- Levantamiento total del bloqueo a Gaza.
-- Reconocimiento del Estado palestino con fronteras de 1967 y capital en Jerusalén Este.
-- Boicot, desinversión y sanciones (BDS) contra empresas cómplices del apartheid.
-
-La libertad de Palestina es inseparable de la lucha antiimperialista mundial. ¡No somos neutrales: estamos con el pueblo palestino!`
-    },
-    {
-      id: "venezuela",
-      title: "Venezuela: Defender la soberanía popular frente al cerco imperial",
-      date: "2025-04-03",
-      category: "Internacional",
-      content: `Nuevamente, potencias extranjeras intentan imponer su agenda mediante sanciones económicas, campañas mediáticas y presión diplomática contra la Revolución Bolivariana. Estas medidas no solo violan el derecho internacional, sino que afectan directamente al pueblo venezolano, limitando el acceso a medicinas, alimentos y recursos básicos.
-
-El MSR rechaza toda forma de injerencia y respalda el derecho inalienable del pueblo venezolano a:
-- Autodeterminación sin condicionamientos externos.
-- Desarrollar su modelo económico y social en paz.
-- Contar con el apoyo solidario de los pueblos del mundo frente al bloqueo.
-
-La verdadera democracia no se impone con decretos imperiales, sino que florece desde la organización popular. ¡Manos fuera de Venezuela!`
+ useEffect(() => {
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY + 200;
+    for (const [key, ref] of Object.entries(sections)) {
+      if (ref.current) {
+        const sectionTop = ref.current.offsetTop;
+        const sectionHeight = ref.current.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveSection(key);
+          break;
+        }
+      }
     }
+  };
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
+  // === ARTÍCULO DE ACTUALIDAD - ALEJANDRO ORTIZ ===
+  const articuloActualidadAlejandroOrtiz = [
+    "ACTUALIDAD Y COYUNTURA",
+    "",
+    "Por: Alejandro Ortiz",
+    "",
+    "La geopolítica mundial entre 2014 y 2025 ha sido testigo de una profunda transformación en el orden internacional, marcada por la transición de un sistema unipolar liderado por Estados Unidos hacia un mundo multipolar caracterizado por tensiones crecientes entre grandes potencias, la reconfiguración de alianzas y la emergencia de nuevos actores globales. Este período ha estado dominado por conflictos regionales, rivalidades estratégicas, crisis económicas y sociales, y desafíos globales como el cambio climático y la pandemia de COVID-19. A continuación, se analizan los principales eventos y tendencias que han definido esta década crítica.",
+    "",
+    "---",
+    "El inicio del declive unipolar (2014-2016)",
+    "El año 2014 marcó un punto de inflexión en la geopolítica global con la anexión de Crimea por parte de Rusia, como respuesta al golpe de Estado en Ucrania, patrocinado por la OTAN y EEUU, un evento que resucitó tensiones reminiscentes de la Guerra Fría. La respuesta occidental, liderada por Estados Unidos y la Unión Europea, incluyó sanciones económicas y el fortalecimiento de la OTAN en Europa del Este, lo que profundizó la división entre Occidente y Rusia.",
+    "Simultáneamente, el ascenso del Estado Islámico (ISIS) en Siria e Irak planteó un desafío al internacional liderada por Estados Unidos a intervenir militarmente, mientras que Rusia aprovechó la oportunidad para consolidar su influencia en Siria apoyando al régimen de Bashar al-Assad. Estos eventos subrayaron la complejidad de los conflictos contemporáneos, donde intereses nacionales, ideologías y dinámicas regionales se entrelazaban.",
+    "En paralelo, el Brexit en 2016 representó un golpe significativo para la Unión Europea, exponiendo divisiones internas y debilitando su capacidad de proyectar poder político y económico. Mientras tanto, la elección de Donald Trump como presidente de Estados Unidos introdujo un enfoque más nacionalista y unilateral en la política exterior estadounidense, cuestionando el compromiso de Washington con alianzas tradicionales y acuerdos multilaterales como el Acuerdo de París sobre el clima.",
+    "",
+    "---",
+    "El surgimiento de un mundo multipolar (2017-2020)",
+    "La segunda mitad de la década estuvo marcada por el fortalecimiento de China como una superpotencia global. Bajo el liderazgo de Xi Jinping, China lanzó iniciativas ambiciosas como la Franja y la Ruta (BRI), que buscaba expandir su influencia económica y política en Asia, África y Europa. Al mismo tiempo, Pekín intensificó sus reclamos territoriales en el Mar de China Meridional, generando tensiones con países vecinos y Estados Unidos. La guerra comercial entre China y Estados Unidos, iniciada bajo la administración Trump, simbolizó la creciente rivalidad entre ambas potencias, que abarcaba no solo el ámbito económico, sino también tecnológico y militar.",
+    "La pandemia de COVID-19, declarada en 2020, exacerbó las tensiones globales. la gestión de la crisis por parte de Pekín fue vista como un ejemplo de eficiencia autoritaria, mientras que las democracias occidentales enfrentaron críticas por su respuesta fragmentada y descoordinada. La pandemia también aceleró la digitalización de la economía y la sociedad, aumentando la dependencia de tecnologías desarrolladas por empresas chinas como Huawei, lo que generó preocupaciones sobre seguridad y espionaje.",
+    "En América Latina, África y partes de Asia, la competencia entre China y Estados Unidos por la influencia económica y política se intensificó. China ofreció préstamos y ayuda humanitaria durante la pandemia, mientras que Estados Unidos intentó contrarrestar esta influencia mediante iniciativas como el \"Build Back Better World\" (B3W). Sin embargo, la percepción de muchos países en desarrollo fue que ambas potencias priorizaban sus propios intereses sobre el bienestar local.",
+    "",
+    "---",
+    "Crisis y realineamientos (2021-2025)",
+    "La guerra genocida de Ucrania contra el Dombas y Dotnek. Mas el incumplimientos de los acuerdos de Minsk por parte de Ucrania y los garantes. provoco la Operacion militar Especial que condujo a la invasión Rusa de Ucrania en febrero de 2022. esto marcó otro hito en la geopolítica global. Esta guerra no solo devastó a Ucrania, sino que también polarizó aún más el sistema. Occidente impuso sanciones sin precedentes a Rusia, mientras que países como China, India y varias naciones del Sur Global adoptaron posiciones más equilibradas o neutrales. La guerra también aceleró la transición hacia un orden energético más diversificado, con Europa reduciendo su dependencia del gas ruso y cambiando a USA como su principal proveedor energetico.",
+    "Durante este período, las tensiones entre China y Estados Unidos alcanzaron niveles récord. La visita de Nancy Pelosi a Taiwán en 2022 provocó una escalada militar en el Estrecho de Taiwán, mientras que las restricciones estadounidenses a la exportación de semiconductores avanzados a China intensificaron la carrera tecnológica. En respuesta, China fortaleció sus vínculos con Rusia y otros países no alineados con Occidente, formando un bloque informal conocido como el \"BRICS+\".",
+    "En Medio Oriente, el acuerdo entre Israel y varios países árabes mediado por Estados Unidos en 2020 (los Acuerdos de Abraham) alteró las dinámicas regionales, aunque las tensiones entre Irán y Arabia Saudita persistieron. El colapso de Afganistán tras la retirada estadounidense en 2021 dejó un vacío de poder que fue rápidamente ocupado por los talibanes, destacando los límites del intervencionismo occidental.",
+    "Finalmente, la crisis climática y la transición energética emergieron como temas centrales en la agenda global. Las conferencias climáticas anuales (COP) revelaron las dificultades de lograr consensos entre países desarrollados y en desarrollo, mientras que la competencia por recursos críticos como litio, cobalto y tierras raras adquirió una dimensión estratégica.",
+    "",
+    "---",
+    "Perspectivas hacia 2025",
+    "Para 2025, el mundo se encuentra en una encrucijada. La era de la hegemonía estadounidense ha dado paso a un sistema multipolar donde China, Rusia, la Unión Europea, India y otras potencias regionales compiten por influencia. Sin embargo, esta multipolaridad no ha traído estabilidad; por el contrario, ha incrementado la incertidumbre y el riesgo de confrontaciones directas.",
+    "Las democracias liberales enfrentan desafíos internos y externos, desde el auge del populismo hasta la erosión de las instituciones multilaterales. Por su parte, las potencias emergentes han demostrado una notable capacidad de adaptación, utilizando tecnología y propaganda para consolidar su poder.",
+    "En este contexto, la cooperación internacional sigue siendo esencial para abordar desafíos globales como el cambio climático, la seguridad alimentaria y la proliferación nuclear. Sin embargo, la falta de confianza entre las grandes potencias dificulta la construcción de soluciones colectivas. El futuro dependerá de la habilidad de los líderes mundiales para navegar este complejo panorama y encontrar puntos de convergencia en medio de la divergencia.",
+    "",
+    "---",
+    "Conclusión",
+    "La geopolítica entre 2014 y 2025 ha sido testigo de cambios fundamentales que han redefinido el orden global. Desde la reunificacion de Crimea hasta la guerra en Ucrania, pasando por la pandemia de COVID-19 y la rivalidad entre China y Estados Unidos, estos años han estado marcados por la volatilidad y la incertidumbre. A medida que nos acercamos a 2025, queda claro que el mundo está entrando en una nueva era de competencia estratégica y realineamientos políticos. La pregunta clave es si las naciones podrán superar sus diferencias y trabajar juntas para enfrentar los desafíos compartidos, o si el mundo seguirá fragmentándose en bloques rivales."
   ];
 
-  const categories = ['Todos', ...new Set(articles.map(a => a.category))];
+  // === DECLARACIONES Y ARTÍCULOS EXISTENTES ===
+  const declaracionPalestina = [
+    "🌍 ¡ALTO AL GENOCIDIO EN PALESTINA! EXIGIMOS JUSTICIA Y SOBERANÍA",
+    "",
+    "Mientras el mundo mira en silencio, el pueblo palestino enfrenta uno de los asedios más brutales de la historia reciente. Bombardeos indiscriminados, desplazamientos forzados, bloqueo de ayuda humanitaria y destrucción de infraestructura son crímenes de lesa humanidad que no pueden seguir normalizándose.",
+    "",
+    "El Movimiento Social Revolucionario (MSR) se suma a la voz global que exige:",
+    "",
+    "• Cese inmediato de las agresiones militares israelíes.",
+    "• Levantamiento total del bloqueo a Gaza.",
+    "• Reconocimiento del Estado palestino con fronteras de 1967 y capital en Jerusalén Este.",
+    "• Boicot, desinversión y sanciones (BDS) contra empresas cómplices del apartheid.",
+    "",
+    "La libertad de Palestina es inseparable de la lucha antiimperialista mundial. ¡No somos neutrales: estamos con el pueblo palestino!"
+  ];
 
-  // Scrollspy
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-      let currentSection = 'hero';
+  const declaracionVenezuela = [
+    "🇻🇪 VENEZUELA: DEFENDER LA SOBERANÍA POPULAR FRENTE AL CERCO IMPERIAL",
+    "",
+    "Nuevamente, potencias extranjeras intentan imponer su agenda mediante sanciones económicas, campañas mediáticas y presión diplomática contra la Revolución Bolivariana. Estas medidas no solo violan el derecho internacional, sino que afectan directamente al pueblo venezolano, limitando el acceso a medicinas, alimentos y recursos básicos.",
+    "",
+    "El MSR rechaza toda forma de injerencia y respalda el derecho inalienable del pueblo venezolano a:",
+    "",
+    "• Autodeterminación sin condicionamientos externos.",
+    "• Desarrollar su modelo económico y social en paz.",
+    "• Contar con el apoyo solidario de los pueblos del mundo frente al bloqueo.",
+    "",
+    "La verdadera democracia no se impone con decretos imperiales, sino que florece desde la organización popular. ¡Manos fuera de Venezuela!",
+    "",
+    "Publicado: 3 de abril de 2025 | MSR - Frente Antiimperialista Latinoamericano"
+  ];
 
-      Object.entries(sectionRefs).forEach(([sectionId, ref]) => {
-        if (ref.current) {
-          const sectionTop = ref.current.offsetTop;
-          const sectionHeight = ref.current.offsetHeight;
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            currentSection = sectionId;
-          }
-        }
-      });
+  const articuloTabacoCompleto = [
+    "TABACO Y CIGARRO SON DOMINICANOS",
+    "Por: Ing. Francisco Matos Mancebo",
+    "",
+    "Junto con el conuco y el casabe, el tabaco constituye la herencia económica más importante que nos dejaron los taínos. Es hasta hace relativamente pocos años que se vino a aclarar el uso del tabaco por parte de nuestros indígenas.",
+    "",
+    "Los cronistas explicaron cómo la principal ceremonia mágico/religiosa de los taínos consistía en un acto en el cual el hechicero inhalaba por la nariz unas drogas alucinógenas que lo “montaban” para usar el “argot” criollo, y ponían en contacto con sus dioses para recibir de ellos el oráculo sagrado. Por muchos años, varios investigadores creyeron que la droga utilizada en esta ceremonia, llamada de la “cohoba”, lo era el tabaco, cuando, en realidad, lo que se utilizaba era la piptadenia peregrina. Para inhalar la cohoba se utilizaba un instrumento en forma de “y”, dos de cuyos orificios se colocaban en las fosas nasales y por el otro se soplaba para empujar la droga.",
+    "",
+    "Representaciones de este inhalador existen en cerámica y huesos, así como en el arte rupestre de nuestras cavernas.",
+    "",
+    "El tabaco era utilizado por los taínos simplemente para fumarlo, aunque también para curar. Fue en el primer viaje del Almirante, en 1492, cuando los europeos contemplaron, asombrados, el uso de esas hierbas que hacían brotar humo por boca y nariz.",
+    "",
+    "---",
+    "PRIMERAS REFERENCIAS HISTÓRICAS",
+    "Siguiendo un orden cronológico, la primera cita que hacen los descubridores sobre el tabaco ocurre apenas un par de días después de haberse descubierto la primera isla de San Salvador, cuando el Almirante explica cómo, en una pequeña canoa, encontró a un indio y en la misma se localizaron “unas hojas secas que deben ser cosas muy apreciadas entre ellos porque ya me trajeron en San Salvador de ellas”.",
+    "",
+    "Luego, en Cuba, el Almirante explica cómo los indios andaban con “ciertas hierbas para tomar sus sahumerios, que son unas hierbas secas metidas en una cierta hoja, seca también, a manera de mosquete hecho de papel de los que hacen los muchachos la Pascua del Espíritu Santo y encendida por la una parte, por la otra chupan, o sorben, o reciben con el resuello para adentro aquel humo, con lo cual se adormecen las carnes y casi emborracha y así disque no sienten el cansancio. Estos mosquetes o como los llamaremos, llaman ellos tabacos.”",
+    "",
+    "Fray Bartolomé de las Casas amplía el asunto cuando afirma: “En esta Isla Española y en las comarcanas tenían otra manera de hierba como propias lechugas y éstas secaban al sol y al fuego y hacían de unas hojas de árbol secas un rollete, como se hace un mosquete de papel y metían dentro un poco de aquella hierba y encendían el mosquete por una parte y por la otra sorbían o atraían el humo hacia dentro en el pecho, lo cual les causaban un adormecimiento en las carnes y en todo el cuerpo de manera que ni sentían hambre ni cansancio y estos mosquetes llamaban tabaco, la media sílaba luenga”.",
+    "",
+    "Unos sesenta años después del Descubrimiento visitó la Española el milanés Girolano Benzoni, quien afirmó que, con relación al tabaco: “Cuando esas hojas están en sazón, las cogen de la mata, las atan en manojos y las suspenden cerca del fuego en su hogar hasta que están bien secas y cuando desean usarlas toman una hoja de la espiga de su grano y poniendo una de aquellas otras dentro de estas, las enrollan juntas como en un canuto; entonces le pegan fuego por un extremo y poniéndose el otro en la boca, aspiran a través de eso, con lo cual el humo así aspirado penetra en la boca, la garganta y la cabeza y lo retienen así tanto como pueden, porque haciéndolo encuentran cierto placer y tanto se llenan con ese humo cruel que pierden el sentido. Y algunos hay que toman tanto humo que caen a tierra como si fueran muertos y permanecen la mayor parte del día o de la noche sin sentido.”",
+    "",
+    "El viajero Benzoni incluyó en su obra un muy interesante dibujo que mostraba cómo en la Isla Española, el tabaco también era utilizado por los indios para curar a los enfermos, ya que el hechicero se ponía un tabaco en la boca y soplaba el humo sobre la cara del paciente. Esta práctica mágica/religiosa se ha mantenido en nuestro país, pues, pasando como costumbre de los esclavos en sus ritos religiosos, en el vodú y otras prácticas de nuestra religiosidad popular, el oficiante siempre tiene un tabaco en la boca y cubre con su humo a varios de los participantes.",
+    "",
+    "El uso del tabaco era, pues, múltiple. Por un lado, se utilizaba para adormecer el cuerpo y dar placer; por otro, como elemento auspiciador de la mejoría de los enfermos vía el hechicero.",
+    "",
+    "---",
+    "ADOPCIÓN POR COLONIZADORES Y ESCRIBIDOS",
+    "Los españoles a su llegada a nuestra isla rápidamente adoptaron el uso del tabaco. Para 1540, el Padre Las Casas señala como un hecho notable el haber conocido “un español casado y honrado, en esta isla que usó tomar los tabacos y el humo de ellos, como los tomaban los indios y decía que por el gran provecho que sentía, por ninguna cosa los dejaría”.",
+    "",
+    "Pero fueron realmente los esclavos africanos los que con mayor entusiasmo adoptaron la costumbre de fumar el tabaco. El propio Benzoni explica cómo a los esclavos, el tabaco “les quita el cansancio”.",
+    "",
+    "Oviedo, en 1546, agrega que: “Al presente muchos negros de los que están en esta ciudad (de Santo Domingo) y en la isla toda, han tomado la misma costumbre, crían en las haciendas y heredades de sus amos esta hierba y toman las mismas ahumadas o tabacos porque dicen que, cuando dejan de trabajar y tomar el tabaco se les quita el cansancio”.",
+    "",
+    "El padre Bernabé Cobo, jesuita, explica cómo “la costumbre se les pegó a los españoles de los indios de la Isla Española, en la cual los caciques y más principales usaban tomarlo de esta manera; metían sus hojas después de secas y curadas en unos palillos huecos curiosamente labrados para este efecto y encendíanlo por una parte y por otra bebían el humo”.",
+    "",
+    "Vemos pues, como tanto el esclavo africano como el español colonizador rápidamente adoptaron la costumbre de fumar tabaco, por lo que se puede decir, sin lugar a dudas, que el tabaco fue el regalo de América más universalmente aceptado por la humanidad y fue precisamente desde La Española, centro irradiador de la colonización, desde donde el tabaco fue llevado a Europa y África.",
+    "",
+    "— Ing. Francisco Matos Mancebo"
+  ];
 
-      setActiveSection(currentSection);
-      setScrollProgress((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-    };
+  const articuloNeoliberalismo = [
+    "NEOLIBERALISMO: CAUSAS Y CONSECUENCIAS PARA LA HUMANIDAD",
+    "",
+    "El neoliberalismo es una corriente económica, política y social que surgió en el siglo XX como una reacción al socialismo y en particular contra el movimiento obrero por ser la base de sustentación del mismo. La atomización de la clase obrera permitió una lucha potencializada contra los países socialistas y evitó el surgimiento de nuevos Estados obreros, socialistas y democracias populares. La tesis de lucha contra el intervencionismo estatal y las políticas keynesianas se presentó como despojo de las conquistas del movimiento que predominó tras la Segunda Guerra Mundial. Se caracteriza por la defensa del libre mercado, la privatización de los servicios públicos, la reducción del papel del Estado en la economía y la promoción de la globalización.",
+    "",
+    "---",
+    "CAUSAS DEL NEOLIBERALISMO",
+    "1. Crisis del Estado de Bienestar (Keynesianismo)",
+    "En las décadas de 1970 y 1980, muchos países enfrentaron crisis económicas derivadas de la corrupción, rapina imperialista y los préstamos colonizantes. Esto hizo colapsar el modelo keynesiano, que implicaba fuerte intervencionismo estatal, política sobre la economía, altos niveles de gasto público y subsidios. Esto generó inflación elevada, déficits fiscales y estanflación. El neoliberalismo fue presentado como alternativa.",
+    "2. Influencia de las Escuelas Económicas Neoliberales",
+    "Pensadores como Friedrich von Hayek, Milton Friedman y Ludwig von Mises desarrollaron teorías que criticaban el intervencionismo estatal y defendían el libre mercado.",
+    "3. Globalización Económica",
+    "La expansión del comercio internacional y la integración financiera mundial crearon un entorno propicio para políticas neoliberales. El FMI y el Banco Mundial promovieron reformas estructurales basadas en principios neoliberales.",
+    "4. Revolución Tecnológica y Financiera",
+    "La digitalización y la desregulación financiera permitieron la creación de mercados globales de capital, facilitando la acumulación de riqueza en manos de unos pocos.",
+    "5. Políticas de Gobiernos Clave",
+    "Líderes como Margaret Thatcher y Ronald Reagan implementaron políticas neoliberales en los años 80, consolidando este modelo como paradigma dominante.",
+    "",
+    "---",
+    "CONSECUENCIAS DEL NEOLIBERALISMO",
+    "Aspectos Negativos:",
+    "• Desigualdad Social: El 1% más rico posee casi dos tercios de la riqueza global generada desde 2020 (Oxfam).",
+    "• Precarización Laboral: Flexibilización laboral ha llevado a empleos inseguros, mal remunerados y sin derechos.",
+    "• Erosión del Estado de Bienestar: Privatización de salud, educación y servicios básicos ha limitado el acceso de las clases populares.",
+    "• Impacto Ambiental: Prioriza crecimiento económico sobre sostenibilidad, acelerando la explotación de recursos naturales.",
+    "• Deuda y Dependencia: Países en desarrollo adoptaron políticas neoliberales bajo presión del FMI, generando dependencia y pérdida de soberanía.",
+    "• Crisis Financieras Recurrentes: Desregulación financiera provocó burbujas especulativas como la de 2008.",
+    "• Polarización Política y Social: Ha alimentado movimientos reivindicativos y tensiones sociales.",
+    "",
+    "---",
+    "IMPACTO EN LA HUMANIDAD",
+    "El neoliberalismo ha tenido un impacto profundo y ambivalente: ha permitido avances tecnológicos y cierta reducción de pobreza en algunas regiones, pero ha profundizado desigualdades, precarizado el trabajo y puesto en peligro el planeta.",
+    "",
+    "CONCLUSIÓN",
+    "El neoliberalismo es un modelo económico controvertido. Para el futuro de la humanidad, es fundamental explorar alternativas que prioricen la justicia social, la equidad y la protección del medio ambiente. Modelos como la economía solidaria, el decrecimiento y el bienestar común están ganando relevancia como respuestas a los desafíos del neoliberalismo.",
+    "",
+    "— Movimiento por la Salvación de la República (MSR)"
+  ];
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const articuloDeudaDependencia = [
+    "DEUDA Y DEPENDENCIA EN PAÍSES EN DESARROLLO: UN ANÁLISIS GLOBAL",
+    "",
+    "La deuda externa y la dependencia económica han sido temas centrales en el análisis del desarrollo de los países en desarrollo. Estos fenómenos perpetúan estructuras de desigualdad global y limitan la soberanía nacional.",
+    "",
+    "---",
+    "LA DEUDA EXTERNA",
+    "Se refiere al dinero que un país debe a acreedores extranjeros. Causas:",
+    "• Herencia colonial: economías débiles tras la independencia.",
+    "• Políticas neoliberales: programas de ajuste del FMI/Banco Mundial.",
+    "• Crisis globales: pandemia, crisis financieras.",
+    "• Dependencia de exportaciones primarias: volatilidad de precios.",
+    "",
+    "Impactos:",
+    "• Limitación del gasto público en salud, educación e infraestructura.",
+    "• Aumento de la pobreza por medidas de austeridad.",
+    "• Fuga de capitales y malversación.",
+    "",
+    "---",
+    "DEPENDENCIA ECONÓMICA",
+    "Concepto desarrollado por Prebisch y Gunder Frank: integración subordinada en la economía global.",
+    "Manifestaciones:",
+    "• Exportan materias primas baratas, importan manufacturas caras.",
+    "• Inversión extranjera en sectores extractivos sin externalidades positivas.",
+    "• Dependencia tecnológica.",
+    "",
+    "Ciclo de dependencia: Exportación primaria → Baja industrialización → Dependencia de importaciones → Acumulación de deuda → Subdesarrollo.",
+    "",
+    "---",
+    "DIMENSIÓN GLOBAL",
+    "• FMI y Banco Mundial imponen condiciones que priorizan el pago de deuda sobre el bienestar social.",
+    "• Deuda odiosa: contraída por dictaduras (ej. Argentina 1976-1983, Sudáfrica apartheid).",
+    "• Movimientos globales exigen cancelación de deuda (Campaña Jubileo).",
+    "",
+    "---",
+    "CONSECUENCIAS PARA EL SUR GLOBAL",
+    "• Sobrecarga fiscal: el servicio de la deuda consume presupuestos nacionales.",
+    "• Dependencia externa: condicionamientos políticos y transferencia de riqueza.",
+    "• Vulnerabilidad económica: efecto bola de nieve.",
+    "• Impacto social: aumento de pobreza, desigualdad y migración forzada.",
+    "• Pérdida de soberanía: privatización forzada e interferencia política.",
+    "",
+    "---",
+    "PROPUESTAS",
+    "• Reestructuración justa de la deuda.",
+    "• Financiamiento alternativo (bonos verdes, cooperación Sur-Sur).",
+    "• Regulación financiera global.",
+    "• Diversificación económica.",
+    "• Justicia climática: responsabilidad histórica de países desarrollados.",
+    "",
+    "CONCLUSIÓN",
+    "La deuda y la dependencia son consecuencias de estructuras económicas globales desiguales. Solo mediante reformas sistémicas, solidaridad internacional y justicia social será posible construir un mundo más equitativo.",
+    "",
+    "— MSR - Frente Antiimperialista Latinoamericano"
+  ];
 
-  const openArticle = (article) => setSelectedArticle(article);
-  const closeArticle = () => setSelectedArticle(null);
+  const articuloMovimientoObrero = [
+    "EL MOVIMIENTO OBRERO EN LOS ÚLTIMOS 30 O 40 AÑOS: TRANSFORMACIONES, DESAFÍOS Y RESISTENCIAS",
+    "",
+    "El movimiento obrero ha sido una fuerza central en la configuración de las relaciones laborales y los derechos sociales. En las últimas décadas, ha enfrentado transformaciones profundas debido a la globalización, la digitalización, la desindustrialización y las reformas neoliberales.",
+    "",
+    "---",
+    "EROSIÓN DEL PODER OBRERO TRADICIONAL",
+    "Las políticas neoliberales de los años 80 y 90 priorizaron desregulación, privatización y flexibilización laboral. La desindustrialización en EE.UU., Reino Unido y Alemania debilitó a los sindicatos industriales. En América Latina, las crisis y los ajustes del FMI erosionaron el poder obrero, reemplazando empleos formales por trabajo precario e informal.",
+    "",
+    "---",
+    "NUEVAS FORMAS DE TRABAJO Y PRECARIZACIÓN",
+    "La economía de plataformas (Uber, Deliveroo, Amazon) ha creado empleos sin seguridad social ni vínculos contractuales. Esto ha desafiado las formas tradicionales de sindicalización, pero también ha generado nuevas formas de organización mediante redes digitales y sindicatos alternativos.",
+    "",
+    "---",
+    "LUCHAS EN EL SUR GLOBAL",
+    "En China, millones de migrantes rurales han protagonizado huelgas por mejores salarios. En India, sindicatos como CITU y BMS lideran movilizaciones masivas. En América Latina, protestas en Chile (2019) y Brasil demuestran el resurgimiento de la lucha obrera contra el neoliberalismo.",
+    "",
+    "---",
+    "ROL DE LA MUJER E INTERSECCIONALIDAD",
+    "Las mujeres han ganado protagonismo en sectores como cuidado, educación y trabajo doméstico. Las luchas laborales se entrelazan con demandas por justicia racial, derechos de inmigrantes y protección ambiental, ampliando la base del movimiento.",
+    "",
+    "---",
+    "DESAFÍOS FUTUROS",
+    "La automatización y la inteligencia artificial amenazan millones de empleos. Sin embargo, la pandemia reveló la importancia de los trabajadores esenciales, y la sindicalización crece en empresas como Starbucks y Amazon.",
+    "",
+    "CONCLUSIÓN",
+    "El movimiento obrero no es una reliquia del pasado; es una fuerza viva que evoluciona. Su historia reciente enseña que, pese a los desafíos, la solidaridad y la organización siguen siendo herramientas poderosas para la justicia social y la dignidad laboral.",
+    "",
+    "— Movimiento por la Salvación de la República (MSR)"
+  ];
 
-  const filteredArticles = filterCategory === 'Todos' 
-    ? articles 
-    : articles.filter(article => article.category === filterCategory);
+  const declaracionUniversal = [
+    "Preámbulo",
+    "Considerando que la libertad, la justicia y la paz en el mundo tienen por base el reconocimiento de la dignidad intrínseca y de los derechos iguales e inalienables de todos los miembros de la familia humana;",
+    "Considerando que el desconocimiento y el menosprecio de los derechos humanos han originado actos de barbarie ultrajantes para la conciencia de la humanidad, y que se ha proclamado, como la aspiración más elevada del hombre, el advenimiento de un mundo en que los seres humanos, liberados del temor y de la miseria, disfruten de la libertad de palabra y de la libertad de creencias;",
+    "Considerando esencial que los derechos humanos sean protegidos por un régimen de Derecho, a fin de que el hombre no se vea compelido al supremo recurso de la rebelión contra la tiranía y la opresión;",
+    "Considerando también esencial promover el desarrollo de relaciones amistosas entre las naciones;",
+    "Considerando que los pueblos de las Naciones Unidas han reafirmado en la Carta su fe en los derechos fundamentales del hombre, en la dignidad y el valor de la persona humana y en la igualdad de derechos de hombres y mujeres, y se han declarado resueltos a promover el progreso social y a elevar el nivel de vida dentro de un concepto más amplio de la libertad;",
+    "Considerando que los Estados Miembros se han comprometido a asegurar, en cooperación con la Organización de las Naciones Unidas, el respeto universal y efectivo a los derechos y libertades fundamentales del hombre, y",
+    "Considerando que una concepción común de estos derechos y libertades es de la mayor importancia para el pleno cumplimiento de dicho compromiso,",
+    "",
+    "Artículo 1",
+    "Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros.",
+    "",
+    "Artículo 2",
+    "Toda persona tiene todos los derechos y libertades proclamados en esta Declaración, sin distinción alguna de raza, color, sexo, idioma, religión, opinión política o de cualquier otra índole, origen nacional o social, posición económica, nacimiento o cualquier otra condición.",
+    "Además, no se hará distinción alguna fundada en la condición política, jurídica o internacional del país o territorio de cuya jurisdicción dependa una persona, tanto si se trata de un país independiente, como de un territorio bajo administración fiduciaria, no autónomo o sometido a cualquier otra limitación de soberanía.",
+    "",
+    "Artículo 3",
+    "Todo individuo tiene derecho a la vida, a la libertad y a la seguridad de su persona.",
+    "",
+    "Artículo 4",
+    "Nadie estará sometido a esclavitud ni a servidumbre; la esclavitud y la trata de esclavos están prohibidas en todas sus formas.",
+    "",
+    "Artículo 5",
+    "Nadie será sometido a torturas ni a penas o tratos crueles, inhumanos o degradantes.",
+    "",
+    "Artículo 6",
+    "Todo ser humano tiene derecho, en todas partes, al reconocimiento de su personalidad jurídica.",
+    "",
+    "Artículo 7",
+    "Todos son iguales ante la ley y tienen, sin distinción, derecho a igual protección de la ley. Todos tienen derecho a igual protección contra toda discriminación que infrinja esta Declaración y contra toda provocación a tal discriminación.",
+    "",
+    "Artículo 8",
+    "Toda persona tiene derecho a un recurso efectivo, ante los tribunales nacionales competentes, que la ampare contra actos que violen sus derechos fundamentales reconocidos por la constitución o por la ley.",
+    "",
+    "Artículo 9",
+    "Nadie podrá ser arbitrariamente detenido, preso ni desterrado.",
+    "",
+    "Artículo 10",
+    "Toda persona tiene derecho, en condiciones de plena igualdad, a ser oída públicamente y con justicia por un tribunal independiente e imparcial, para la determinación de sus derechos y obligaciones o para el examen de cualquier acusación contra ella en materia penal.",
+    "",
+    "Artículo 11",
+    "1. Toda persona acusada de delito tiene derecho a que se presuma su inocencia mientras no se pruebe su culpabilidad, conforme a la ley y en juicio público en el que se le hayan asegurado todas las garantías necesarias para su defensa.",
+    "2. Nadie será condenado por actos u omisiones que en el momento de cometerse no fueron delictivos según el derecho nacional o internacional. Tampoco se impondrá pena más grave que la aplicable en el momento de la comisión del delito.",
+    "",
+    "Artículo 12",
+    "Nadie será objeto de injerencias arbitrarias en su vida privada, su familia, su domicilio o su correspondencia, ni de ataques a su honra o a su reputación. Toda persona tiene derecho a la protección de la ley contra tales injerencias o ataques.",
+    "",
+    "Artículo 13",
+    "1. Toda persona tiene derecho a circular libremente y a elegir su residencia en el territorio de un Estado.",
+    "2. Toda persona tiene derecho a salir de cualquier país, incluso del propio, y a regresar a su país.",
+    "",
+    "Artículo 14",
+    "1. En caso de persecución, toda persona tiene derecho a buscar asilo, y a disfrutar de él, en cualquier país.",
+    "2. Este derecho no podrá ser invocado contra una acción judicial realmente originada por delitos comunes o por actos contrarios a los propósitos y principios de las Naciones Unidas.",
+    "",
+    "Artículo 15",
+    "1. Toda persona tiene derecho a una nacionalidad.",
+    "2. A nadie se privará arbitrariamente de su nacionalidad ni del derecho a cambiar de nacionalidad.",
+    "",
+    "Artículo 16",
+    "1. Los hombres y las mujeres, a partir de la edad núbil, tienen derecho, sin restricción alguna por motivos de raza, nacionalidad o religión, a casarse y fundar una familia; y disfrutarán de iguales derechos en cuanto al matrimonio, durante el matrimonio y en caso de disolución del matrimonio.",
+    "2. Solo mediante libre y pleno consentimiento de los futuros esposos podrá contraerse el matrimonio.",
+    "3. La familia es el elemento natural y fundamental de la sociedad y tiene derecho a la protección de la sociedad y del Estado.",
+    "",
+    "Artículo 17",
+    "1. Toda persona tiene derecho a la propiedad, individual y colectivamente.",
+    "2. Nadie será privado arbitrariamente de su propiedad.",
+    "",
+    "Artículo 18",
+    "Toda persona tiene derecho a la libertad de pensamiento, de conciencia y de religión; este derecho incluye la libertad de cambiar de religión o de creencia, así como la libertad de manifestar su religión o su creencia, individual y colectivamente, tanto en público como en privado, por la enseñanza, la práctica, el culto y la observancia.",
+    "",
+    "Artículo 19",
+    "Todo individuo tiene derecho a la libertad de opinión y de expresión; este derecho incluye el de no ser molestado a causa de sus opiniones, el de investigar y recibir informaciones y opiniones, y el de difundirlas, sin limitación de fronteras, por cualquier medio de expresión.",
+    "",
+    "Artículo 20",
+    "1. Toda persona tiene derecho a la libertad de reunión y de asociación pacíficas.",
+    "2. Nadie podrá ser obligado a pertenecer a una asociación.",
+    "",
+    "Artículo 21",
+    "1. Toda persona tiene derecho a participar en el gobierno de su país, directamente o por medio de representantes libremente escogidos.",
+    "2. Toda persona tiene el derecho de acceder, en condiciones de igualdad, a las funciones públicas de su país.",
+    "3. La voluntad del pueblo es la base de la autoridad del poder público; esta voluntad se expresará mediante elecciones auténticas que habrán de celebrarse periódicamente, por sufragio universal e igual y por voto secreto u otro procedimiento equivalente que garantice la libertad del voto.",
+    "",
+    "Artículo 22",
+    "Toda persona, como miembro de la sociedad, tiene derecho a la seguridad social, y a obtener, mediante el esfuerzo nacional y la cooperación internacional, habida cuenta de la organización y los recursos de cada Estado, la satisfacción de los derechos económicos, sociales y culturales, indispensables a su dignidad y al libre desarrollo de su personalidad.",
+    "",
+    "Artículo 23",
+    "1. Toda persona tiene derecho al trabajo, a la libre elección de su trabajo, a condiciones equitativas y satisfactorias de trabajo y a la protección contra el desempleo.",
+    "2. Toda persona tiene derecho, sin discriminación alguna, a igual salario por trabajo igual.",
+    "3. Toda persona que trabaja tiene derecho a una remuneración equitativa y satisfactoria, que le asegure, así como a su familia, una existencia conforme a la dignidad humana y que será complementada, en caso necesario, por cualesquiera otros medios de protección social.",
+    "4. Toda persona tiene derecho a fundar sindicatos y a sindicalizarse para la defensa de sus intereses.",
+    "",
+    "Artículo 24",
+    "Toda persona tiene derecho al descanso, al disfrute del tiempo libre, a una limitación razonable de la duración del trabajo y a vacaciones periódicas pagadas.",
+    "",
+    "Artículo 25",
+    "1. Toda persona tiene derecho a un nivel de vida adecuado que le asegure, así como a su familia, la salud y el bienestar, y en especial la alimentación, el vestido, la vivienda, la asistencia médica y los servicios sociales necesarios; tiene asimismo derecho a los seguros en caso de desempleo, enfermedad, invalidez, viudez, vejez u otros casos de pérdida de sus medios de subsistencia por circunstancias independientes de su voluntad.",
+    "2. La maternidad y la infancia tienen derecho a cuidados y asistencia especiales. Todos los niños, nacidos de matrimonio o fuera de matrimonio, disfrutarán de la misma protección social.",
+    "",
+    "Artículo 26",
+    "1. Toda persona tiene derecho a la educación. La educación debe ser gratuita, al menos en lo concerniente a la instrucción elemental y fundamental. La instrucción elemental será obligatoria. La instrucción técnica y profesional habrá de ser generalizada; el acceso a los estudios superiores será igual para todos, en función de los méritos respectivos.",
+    "2. La educación tendrá por objeto el pleno desarrollo de la personalidad humana y el fortalecimiento del respeto a los derechos humanos y a las libertades fundamentales; favorecerá la comprensión, la tolerancia y la amistad entre todas las naciones y todos los grupos étnicos o religiosos; y promoverá el desarrollo de las actividades de las Naciones Unidas para el mantenimiento de la paz.",
+    "3. Los padres tendrán derecho preferente a escoger el tipo de educación que habrá de darse a sus hijos.",
+    "",
+    "Artículo 27",
+    "1. Toda persona tiene derecho a tomar parte libremente en la vida cultural de la comunidad, a gozar de las artes y a participar en el progreso científico y en los beneficios que de él resulten.",
+    "2. Toda persona tiene derecho a la protección de los intereses morales y materiales que le correspondan por razón de las producciones científicas, literarias o artísticas de que sea autora.",
+    "",
+    "Artículo 28",
+    "Toda persona tiene derecho a que se establezca un orden social y internacional en que los derechos y libertades proclamados en esta Declaración se hagan plenamente efectivos.",
+    "",
+    "Artículo 29",
+    "1. Toda persona tiene deberes respecto a la comunidad, puesto que solo en ella puede desarrollar libre y plenamente su personalidad.",
+    "2. En el ejercicio de sus derechos y en el disfrute de sus libertades, toda persona estará solamente sujeta a las limitaciones establecidas por la ley con el único fin de asegurar el reconocimiento y el respeto de los derechos y libertades de los demás, y de satisfacer las justas exigencias de la moral, del orden público y del bienestar general en una sociedad democrática.",
+    "3. Estos derechos y libertades no podrán, en ningún caso, ser ejercidos en oposición a los propósitos y principios de las Naciones Unidas.",
+    "",
+    "Artículo 30",
+    "Nada en esta Declaración podrá interpretarse en el sentido de que confiere derecho alguno al Estado, a un grupo o a una persona, para emprender y desarrollar actividades o realizar actos tendientes a la supresión de cualquiera de los derechos y libertades proclamados en esta Declaración."
+  ];
+
+  // === ARTÍCULO DE TEOLOGÍA DE LIBERACIÓN ===
+  const articuloTeologiaLiberacion = [
+    "FE, JUSTICIA Y LIBERACIÓN",
+    "",
+    "La Teología de Liberación surgió en los años 60 y 70 del siglo XX en el corazón de América Latina, impulsada por pensadores como Gustavo Gutiérrez (Perú), Leonardo Boff (Brasil), Jon Sobrino (El Salvador) y figuras pastorales como Monseñor Óscar Romero. Frente a una Iglesia que históricamente se alió con el poder colonial y oligárquico, estos teólogos se preguntaron: ¿qué significa anunciar el Reino de Dios en un continente marcado por la pobreza extrema, las dictaduras y la explotación imperialista?",
+    "",
+    "Su respuesta fue clara: la fe no puede ser neutral. Amar a Dios implica amar al prójimo oprimido. La salvación no es solo espiritual: es integral, histórica y colectiva. Por eso, la Teología de Liberación adopta el método de \"ver, juzgar y actuar\":",
+    "",
+    "• Ver la realidad con los ojos de los pobres.",
+    "• Juzgarla a la luz del Evangelio y la justicia.",
+    "• Actuar para transformarla.",
+    "",
+    "---",
+    "UNA OPción PREFERENCIAL POR LOS POBRES",
+    "Esta corriente teológica no busca fundar una nueva religión, sino recuperar el núcleo radical del mensaje de Jesús: liberación de los cautivos, justicia para los marginados, denuncia de los poderes opresores. Monseñor Romero lo expresó con claridad: “Si me matan, resucitaré en mi pueblo”.",
+    "",
+    "El Documento de Puebla (1979), de la Conferencia Episcopal Latinoamericana, afirmó que la Iglesia debe hacer una “opción preferencial por los pobres”, no por ideología, sino por fidelidad al Evangelio. Esta opción implica compromiso con la transformación de las estructuras injustas, no solo con la caridad asistencial.",
+    "",
+    "En República Dominicana, esta tradición se expresa en comunidades de base, en curas obreros, en pastores que acompañan luchas campesinas y en creyentes que entienden que la oración sin acción es hipocresía.",
+    "",
+    "---",
+    "CONTRA EL FUNDAMENTALISMO Y EL NEOLIBERALISMO",
+    "Hoy, la Teología de Liberación enfrenta nuevos desafíos: el auge del fundamentalismo religioso, aliado al capital; la mercantilización de la fe; y la instrumentalización de la espiritualidad para justificar la sumisión. Frente a esto, reafirma que:",
+    "",
+    "• Dios no está del lado del poder, sino del pueblo.",
+    "• La esperanza no es pasiva: es revolucionaria.",
+    "• La cruz no glorifica el sufrimiento, sino que lo denuncia.",
+    "",
+    "Por eso, el MSR abraza esta corriente como parte de su horizonte ético: porque creemos que la lucha por la justicia es un acto de fe en la humanidad y en el futuro.",
+    "",
+    "— Movimiento por la Salvación de la República (MSR)"
+  ];
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-gray-100 text-gray-900'}`}>
-      {/* Barra de progreso */}
-      <div 
-        className="fixed top-0 left-0 h-1 bg-red-600 z-50 transition-all duration-100"
-        style={{ width: `${scrollProgress}%` }}
-      ></div>
-
+    <div className="bg-black text-white min-h-screen font-sans">
       {/* Header */}
-      <header className={`sticky top-0 z-40 ${darkMode ? 'bg-red-700' : 'bg-red-600'} shadow-lg`}>
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="w-16 h-16 mr-4 flex-shrink-0">
-              <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
-                <rect width="100" height="100" fill="#009944" />
-                <polygon points="0,100 100,0 100,100" fill="#000000" />
-                <polygon points="0,100 100,0 100,100" fill="#FF0000" transform="translate(0, -10)" />
-                <polygon points="20,30 25,20 30,30 40,30 45,20 50,30 60,30 65,20 70,30 75,35 80,30 75,40 70,45 65,40 60,50 50,50 40,50 35,40 30,45 25,40 20,35" fill="#FF0000" />
-                <text x="20" y="60" fontSize="12" fontWeight="bold" fill="#000000" fontFamily="Arial, sans-serif">MSR</text>
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-xl md:text-2xl font-bold uppercase tracking-wide">
-                República de la Esperanza
-              </h1>
-              <p className={`text-xs md:text-sm italic ${darkMode ? 'text-red-100' : 'text-red-200'}`}>
-                Movimiento por la Salvación de la República
-              </p>
-            </div>
+      <header className="bg-red-800 p-4 text-center sticky top-0 z-50">
+        <div className="inline-block relative w-24 h-24 mb-2">
+          {/* Fondo verde */}
+          <div className="absolute inset-0 bg-green-600"></div>
+          {/* Franja diagonal negra */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-full transform -rotate-45 origin-top-left"
+            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+          >
+            <div className="w-full h-full bg-black"></div>
           </div>
-
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full hover:bg-red-800 transition"
-              aria-label={darkMode ? "Modo claro" : "Modo oscuro"}
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button
-              className="md:hidden text-white"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          {/* Franja diagonal roja */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-full transform -rotate-45 origin-top-left"
+            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 70%, 0 70%)' }}
+          >
+            <div className="w-full h-full bg-red-600"></div>
           </div>
+          {/* Estrella roja */}
+          <div className="absolute top-2 left-2 text-red-600 text-4xl font-bold">★</div>
+          {/* Texto MSR */}
+          <div className="absolute top-12 left-3 text-black font-bold text-sm">MSR</div>
         </div>
-
-        <nav className="hidden md:flex justify-center space-x-3 py-2 uppercase text-xs md:text-sm font-semibold bg-red-800">
-          {Object.keys(sectionRefs).map(sectionId => (
-            <a 
-              key={sectionId}
-              href={`#${sectionId}`}
-              className={`hover:text-yellow-300 transition ${activeSection === sectionId ? 'text-yellow-300 font-bold' : ''}`}
-              onClick={(e) => e.preventDefault()}
-            >
-              {sectionId === 'hero' ? 'Inicio' : 
-               sectionId === 'principios' ? 'Declaración de Principios' :
-               sectionId === 'valores' ? 'Valores' :
-               sectionId === 'internacional' ? 'Internacional' :
-               sectionId === 'diaspora' ? 'Diáspora' :
-               sectionId === 'derechos' ? 'Derechos Humanos' :
-               sectionId === 'articulos' ? 'Artículos' :
-               sectionId === 'actividades' ? 'Actividades' :
-               sectionId === 'donaciones' ? 'Donaciones' : 'Contacto'}
-            </a>
-          ))}
-        </nav>
-
-        {mobileMenuOpen && (
-          <nav className="md:hidden bg-red-800 py-4 px-4 space-y-2 text-sm font-semibold">
-            {Object.keys(sectionRefs).map(sectionId => (
-              <a 
-                key={sectionId}
-                href={`#${sectionId}`}
-                className="block hover:text-yellow-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {sectionId === 'hero' ? 'Inicio' : 
-                 sectionId === 'principios' ? 'Declaración de Principios' :
-                 sectionId === 'valores' ? 'Valores' :
-                 sectionId === 'internacional' ? 'Internacional' :
-                 sectionId === 'diaspora' ? 'Diáspora' :
-                 sectionId === 'derechos' ? 'Derechos Humanos' :
-                 sectionId === 'articulos' ? 'Artículos' :
-                 sectionId === 'actividades' ? 'Actividades' :
-                 sectionId === 'donaciones' ? 'Donaciones' : 'Contacto'}
-              </a>
-            ))}
-          </nav>
-        )}
+        <h1 className="text-3xl md:text-4xl font-bold text-white">REPÚBLICA DE ESPERANZA</h1>
+        <p className="text-sm mt-2 flex items-center justify-center gap-2">
+          <span>📰</span> LA VERDAD QUE NADIE QUIERE CONTAR
+        </p>
       </header>
 
-      {/* Botón flotante */}
-      <a
-        href="https://www.paypal.com/donate/?business=pablo102158@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg z-30 transition transform hover:scale-110"
-        aria-label="Donar con PayPal"
-      >
-        <HandCoins size={24} />
-      </a>
+      {/* Navigation */}
+      <nav className="bg-green-800 p-3 flex flex-wrap justify-center gap-2 sticky top-24 z-40">
+        {[
+          { key: 'inicio', label: 'INICIO' },
+          { key: 'sobreNosotros', label: 'SOBRE NOSOTROS' },
+          { key: 'valores', label: 'VALORES' },
+          { key: 'teologiaLiberacion', label: 'TEOLOGÍA DE LIBERACIÓN' },
+          { key: 'internacional', label: 'INTERNACIONAL' },
+          { key: 'diaspora', label: 'DIÁSPORA' },
+          { key: 'derechosHumanos', label: 'DERECHOS HUMANOS' },
+          { key: 'colaboracion', label: 'COLABORACIÓN' },
+          { key: 'donaciones', label: 'DONACIONES' }
+        ].map(item => (
+          <button 
+            key={item.key}
+            onClick={() => scrollToSection(item.key)}
+            className={`px-3 py-1 text-xs md:text-sm font-bold rounded transition-colors ${
+              activeSection === item.key 
+                ? 'bg-yellow-500 text-black' 
+                : 'bg-red-700 hover:bg-red-600'
+            }`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
 
-      {/* Hero */}
-      <motion.section 
-        ref={sectionRefs.hero}
-        className={`py-12 md:py-16 text-center px-4 ${darkMode ? 'bg-gradient-to-r from-green-800 to-red-800' : 'bg-gradient-to-r from-green-700 to-red-700'}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <motion.h2 
-          className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight px-2"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          ¡ÚNETE A LA LUCHA POR UNA REPÚBLICA<br />
-          <span className="text-yellow-400">DEMOCRÁTICA, POPULAR Y REVOLUCIONARIA!</span>
-        </motion.h2>
-        <motion.p 
-          className="text-base md:text-lg max-w-3xl mx-auto px-2"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
+      {/* Hero Section */}
+      <section ref={sections.inicio} className="p-6 m-4 border-4 border-yellow-500 bg-gradient-to-r from-red-900 to-green-900">
+        <h2 className="text-red-400 text-xs uppercase mb-2">¡LLAMADO A LA ACCIÓN!</h2>
+        <h2 className="text-yellow-400 text-2xl md:text-3xl font-bold mb-4">
+          ¡ÚNETE A LA LUCHA POR UNA REPÚBLICA DEMOCRÁTICA, POPULAR Y REVOLUCIONARIA!
+        </h2>
+        <p className="text-sm">
           El Movimiento por la Salvación de la República convoca a todas las fuerzas populares a organizarse, resistir y construir el futuro que merecemos.
-        </motion.p>
-      </motion.section>
+        </p>
+      </section>
 
-      {/* Declaración de Principios */}
-      <motion.section 
-        id="principios"
-        ref={sectionRefs.principios}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
-            <Landmark className="text-red-500 mr-3" size={28} /> DECLARACIÓN DE PRINCIPIOS
-          </h2>
-          <p className="text-lg mb-4">
-            <strong>Del Movimiento Por la Salvación de la República (MSR)</strong>
-          </p>
-          <div className="space-y-4 text-base">
-            <p>
-              En este momento en donde todo parece necesitar nuevas definiciones, donde las aspiraciones y las esperanzas parecen inalcanzables para los pobres (obreros (as), campesinos (as), mujeres, dominico-haitianos (as), chiriperos (as), jóvenes, niños y niñas). Hombres y Mujeres que hemos soñados por más de dos décadas con una República Democrática, Popular, Revolucionaria, humana, Nos resistimos a dejar de soñar y luchar contra la desigualdad, el individualismo, la opresión del capitalismo salvaje, local e imperial.
-            </p>
-            <p>
-              Por tal razón nos constituimos en una expresión política, democrática, revolucionaria, anti-imperialista, solidaria e internacionalista, con el nombre de Movimiento Por la Salvación de la República (MSR), que enarbole y rescate los aportes de las generaciones de luchadores (as) que nos precedieron y los que nos acompañaron en la lucha por alcanzar una República Democrática, Popular, Revolucionaria.
-            </p>
-            <p>
-              MSR se propone lanzar una campaña permanente por una Republica que revierta el concepto nacionalista del chovinismo estrecho a una noción de Soberanía Popular, que extienda el concepto de Republica más allá de las fronteras territoriales hasta cubrir a los que se consideran parte del pueblo dominicano aún hallan nacido o vivan en el exterior.
-            </p>
-            <p>
-              Creemos y abogamos por los valores fundamentales de La libertad solidaria y de La justicia. Lo hacemos conforme a nuestra concepción del hombre y de la mujer en la sociedad actual porque creemos que son seres libres. Pero esa libertad tiene una forma responsable de expresarse y un límite moral en función de la concepción ética que tenga La sociedad.
-            </p>
-            <p>
-              La libertad no debe ser obstaculizada por las condiciones bajas que vive el ser humano. Por ello consideramos una tarea de nuestro Partido. Hacer oposición a la Opresión, a la Miseria, a la Dependencia, Luchar contra todas las limitaciones que impidan el libre desarrollo del pueblo dominicana y que se garanticen las condiciones materiales de la libertad.
-            </p>
-            <p>
-              Creemos que es necesario. Como fuerza política popular y de masas tener conciencia de los graves problemas que afectan al mundo. Creemos en el trascendental compromiso de convertirnos en el Movimiento promotor de un nuevo orden social, que sea un proyecto histórico a la satisfacción de todos. Nuestras aspiraciones por la justicia nos llevan al diseño de una política operativa. Basada en los valores fundamentales de los fundadores, restauradores, Raza Inmortal, Minerva, Manolo, Amaury, Caamaño y otros/as héroes y mártires de nuestra república.
-            </p>
-            <p>
-              Creemos que la educación y la salud deben ser derechos que correspondan en igualdad de condiciones a todos. El régimen político que aspiramos a construir. Necesitará de ciudadanos capacitados y preparados técnica, científica y culturalmente...
-            </p>
-            <p>
-              Creemos que es importante que el sector público se haga cargo de la mayoría de los servicios colectivos y juegue un papel significativo en los sectores estratégicos de la industria. Las materias primas. La energía y el crédito.
-            </p>
-            <p>
-              La política fiscal debe estar al servicio de tales objetivos al desarrollo económico, social para garantizar una justa distribución de las riqueza a todos/as los ciudadanos/as.
-            </p>
-            <p>
-              Creemos en el principio universal de la <strong>Autodeterminación de los pueblos</strong>, de decidir las políticas necesarias para alcanzar su desarrollo.
-            </p>
-            <p>
-              Nuestro Movimiento está comprometido con la defensa de los recursos naturales renovables y no renovables. Especialmente los bosques, los ríos, los yacimientos minerales, los cuales deben ser explotados y utilizados de manera racional.
-            </p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Valores */}
-      <motion.section 
-        id="valores"
-        ref={sectionRefs.valores}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-black' : 'bg-white'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">NUESTROS VALORES</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div 
-              className={`p-5 rounded-lg shadow-lg ${darkMode ? 'bg-red-900' : 'bg-red-100'}`}
-              whileHover={{ scale: 1.03, y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Heart className="text-white mb-3" size={32} />
-              <h3 className="text-xl font-bold mb-2">Solidaridad</h3>
-              <p>Actuamos con empatía y compromiso con las luchas del pueblo trabajador, campesino y marginado.</p>
-            </motion.div>
-            <motion.div 
-              className={`p-5 rounded-lg shadow-lg ${darkMode ? 'bg-red-900' : 'bg-red-100'}`}
-              whileHover={{ scale: 1.03, y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Scale className="text-white mb-3" size={32} />
-              <h3 className="text-xl font-bold mb-2">Justicia Social</h3>
-              <p>Defendemos la redistribución de la riqueza, la educación y salud públicas, y los derechos de todos los sectores oprimidos.</p>
-            </motion.div>
-            <motion.div 
-              className={`p-5 rounded-lg shadow-lg ${darkMode ? 'bg-red-900' : 'bg-red-100'}`}
-              whileHover={{ scale: 1.03, y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Globe className="text-white mb-3" size={32} />
-              <h3 className="text-xl font-bold mb-2">Antiimperialismo</h3>
-              <p>Rechazamos toda forma de dominación extranjera y luchamos por la soberanía nacional en todos los ámbitos.</p>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Internacional - TEXTO ÍNTEGRO */}
-      <motion.section 
-        id="internacional"
-        ref={sectionRefs.internacional}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">INTERNACIONAL</h2>
-          <h3 className="text-xl font-bold mb-4">ACTUALIDAD Y COYUNTURA</h3>
-          
-          <div className="space-y-6 text-base">
-            <p>
-              La geopolítica mundial entre 2014 y 2025 ha sido testigo de una profunda transformación en el orden internacional, marcada por la transición de un sistema unipolar liderado por Estados Unidos hacia un mundo multipolar caracterizado por tensiones crecientes entre grandes potencias, la reconfiguración de alianzas y la emergencia de nuevos actores globales. Este período ha estado dominado por conflictos regionales, rivalidades estratégicas, crisis económicas y sociales, y desafíos globales como el cambio climático y la pandemia de COVID-19.
-            </p>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">El inicio del declive unipolar (2014-2016)</h4>
-              <p>
-                El año 2014 marcó un punto de inflexión en la geopolítica global con la anexión de Crimea por parte de Rusia, como respuesta al golpe de Estado en Ucrania, patrocinado por la OTAN y EEUU, un evento que resucitó tensiones reminiscentes de la Guerra Fría. La respuesta occidental, liderada por Estados Unidos y la Unión Europea, incluyó sanciones económicas y el fortalecimiento de la OTAN en Europa del Este, lo que profundizó la división entre Occidente y Rusia.
-              </p>
-              <p className="mt-2">
-                Simultáneamente, el ascenso del Estado Islámico (ISIS) en Siria e Irak planteó un desafío al internacional liderada por Estados Unidos a intervenir militarmente, mientras que Rusia aprovechó la oportunidad para consolidar su influencia en Siria apoyando al régimen de Bashar al-Assad. Estos eventos subrayaron la complejidad de los conflictos contemporáneos, donde intereses nacionales, ideologías y dinámicas regionales se entrelazaban.
-              </p>
-              <p className="mt-2">
-                En paralelo, el Brexit en 2016 representó un golpe significativo para la Unión Europea, exponiendo divisiones internas y debilitando su capacidad de proyectar poder político y económico. Mientras tanto, la elección de Donald Trump como presidente de Estados Unidos introdujo un enfoque más nacionalista y unilateral en la política exterior estadounidense, cuestionando el compromiso de Washington con alianzas tradicionales y acuerdos multilaterales como el Acuerdo de París sobre el clima.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">El surgimiento de un mundo multipolar (2017-2020)</h4>
-              <p>
-                La segunda mitad de la década estuvo marcada por el fortalecimiento de China como una superpotencia global. Bajo el liderazgo de Xi Jinping, China lanzó iniciativas ambiciosas como la Franja y la Ruta (BRI), que buscaba expandir su influencia económica y política en Asia, África y Europa. Al mismo tiempo, Pekín intensificó sus reclamos territoriales en el Mar de China Meridional, generando tensiones con países vecinos y Estados Unidos. La guerra comercial entre China y Estados Unidos, iniciada bajo la administración Trump, simbolizó la creciente rivalidad entre ambas potencias, que abarcaba no solo el ámbito económico, sino también tecnológico y militar.
-              </p>
-              <p className="mt-2">
-                La pandemia de COVID-19, declarada en 2020, exacerbó las tensiones globales. La gestión de la crisis por parte de Pekín fue vista como un ejemplo de eficiencia autoritaria, mientras que las democracias occidentales enfrentaron críticas por su respuesta fragmentada y descoordinada. La pandemia también aceleró la digitalización de la economía y la sociedad, aumentando la dependencia de tecnologías desarrolladas por empresas chinas como Huawei, lo que generó preocupaciones sobre seguridad y espionaje.
-              </p>
-              <p className="mt-2">
-                En América Latina, África y partes de Asia, la competencia entre China y Estados Unidos por la influencia económica y política se intensificó. China ofreció préstamos y ayuda humanitaria durante la pandemia, mientras que Estados Unidos intentó contrarrestar esta influencia mediante iniciativas como el "Build Back Better World" (B3W). Sin embargo, la percepción de muchos países en desarrollo fue que ambas potencias priorizaban sus propios intereses sobre el bienestar local.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">Crisis y realineamientos (2021-2025)</h4>
-              <p>
-                La guerra genocida de Ucrania contra el Dombás y Dotnek. Más el incumplimiento de los acuerdos de Minsk por parte de Ucrania y los garantes, provocó la Operación Militar Especial que condujo a la invasión Rusa de Ucrania en febrero de 2022. Esto marcó otro hito en la geopolítica global. Esta guerra no solo devastó a Ucrania, sino que también polarizó aún más el sistema.
-              </p>
-              <p className="mt-2">
-                Occidente impuso sanciones sin precedentes a Rusia, mientras que países como China, India y varias naciones del Sur Global adoptaron posiciones más equilibradas o neutrales. La guerra también aceleró la transición hacia un orden energético más diversificado, con Europa reduciendo su dependencia del gas ruso y cambiando a USA como su principal proveedor energético.
-              </p>
-              <p className="mt-2">
-                Durante este período, las tensiones entre China y Estados Unidos alcanzaron niveles récord. La visita de Nancy Pelosi a Taiwán en 2022 provocó una escalada militar en el Estrecho de Taiwán, mientras que las restricciones estadounidenses a la exportación de semiconductores avanzados a China intensificaron la carrera tecnológica. En respuesta, China fortaleció sus vínculos con Rusia y otros países no alineados con Occidente, formando un bloque informal conocido como el "BRICS+".
-              </p>
-              <p className="mt-2">
-                En Medio Oriente, el acuerdo entre Israel y varios países árabes mediado por Estados Unidos en 2020 (los Acuerdos de Abraham) alteró las dinámicas regionales, aunque las tensiones entre Irán y Arabia Saudita persistieron. El colapso de Afganistán tras la retirada estadounidense en 2021 dejó un vacío de poder que fue rápidamente ocupado por los talibanes, destacando los límites del intervencionismo occidental.
-              </p>
-              <p className="mt-2">
-                Finalmente, la crisis climática y la transición energética emergieron como temas centrales en la agenda global. Las conferencias climáticas anuales (COP) revelaron las dificultades de lograr consensos entre países desarrollados y en desarrollo, mientras que la competencia por recursos críticos como litio, cobalto y tierras raras adquirió una dimensión estratégica.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">Perspectivas hacia 2025</h4>
-              <p>
-                Para 2025, el mundo se encuentra en una encrucijada. La era de la hegemonía estadounidense ha dado paso a un sistema multipolar donde China, Rusia, la Unión Europea, India y otras potencias regionales compiten por influencia. Sin embargo, esta multipolaridad no ha traído estabilidad; por el contrario, ha incrementado la incertidumbre y el riesgo de confrontaciones directas.
-              </p>
-              <p className="mt-2">
-                Las democracias liberales enfrentan desafíos internos y externos, desde el auge del populismo hasta la erosión de las instituciones multilaterales. Por su parte, las potencias emergentes han demostrado una notable capacidad de adaptación, utilizando tecnología y propaganda para consolidar su poder.
-              </p>
-              <p className="mt-2">
-                En este contexto, la cooperación internacional sigue siendo esencial para abordar desafíos globales como el cambio climático, la seguridad alimentaria y la proliferación nuclear. Sin embargo, la falta de confianza entre las grandes potencias dificulta la construcción de soluciones colectivas. El futuro dependerá de la habilidad de los líderes mundiales para navegar este complejo panorama y encontrar puntos de convergencia en medio de la divergencia.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">Conclusión</h4>
-              <p>
-                La geopolítica entre 2014 y 2025 ha sido testigo de cambios fundamentales que han redefinido el orden global. Desde la reunificación de Crimea hasta la guerra en Ucrania, pasando por la pandemia de COVID-19 y la rivalidad entre China y Estados Unidos, estos años han estado marcados por la volatilidad y la incertidumbre. A medida que nos acercamos a 2025, queda claro que el mundo está entrando en una nueva era de competencia estratégica y realineamientos políticos. La pregunta clave es si las naciones podrán superar sus diferencias y trabajar juntas para enfrentar los desafíos compartidos, o si el mundo seguirá fragmentándose en bloques rivales.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">Neoliberalismo: Causas y Consecuencias para la Humanidad</h4>
-              <p>
-                El neoliberalismo es una corriente económica, política y social que surgió en el siglo XX como una reacción al socialismo y en particular contra el movimiento obrero. Se caracteriza por la defensa del libre mercado, la privatización de los servicios públicos, la reducción del papel del Estado en la economía y la promoción de la globalización.
-              </p>
-              <p className="mt-2 font-bold">Causas del Neoliberalismo:</p>
-              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Crisis del Estado de Bienestar (Keynesianismo)</li>
-                <li>Influencia de las Escuelas Económicas Neoliberales (Hayek, Friedman)</li>
-                <li>Globalización Económica</li>
-                <li>Revolución Tecnológica y Financiera</li>
-                <li>Políticas de Gobiernos Clave (Thatcher, Reagan)</li>
-              </ul>
-              <p className="mt-2 font-bold">Consecuencias:</p>
-              <p className="mt-2"><strong>Aspectos Negativos:</strong></p>
-              <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
-                <li>Exacerbación de desigualdades sociales y económicas</li>
-                <li>Precarización laboral</li>
-                <li>Erosión del Estado de bienestar</li>
-                <li>Impacto ambiental negativo</li>
-                <li>Deuda y dependencia en países del Sur Global</li>
-                <li>Crisis financieras recurrentes</li>
-                <li>Polarización política y social</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">Deuda y Dependencia en Países en Desarrollo</h4>
-              <p>
-                La deuda externa y la dependencia económica perpetúan estructuras de desigualdad global. Los países en desarrollo enfrentan limitación del gasto público, aumento de pobreza, y pérdida de soberanía debido a préstamos condicionados del FMI y Banco Mundial.
-              </p>
-              <p className="mt-2"><strong>Soluciones propuestas:</strong> reestructuración de deuda, financiamiento alternativo, regulación financiera global, diversificación económica y justicia climática.</p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-lg mb-2">El Movimiento Obrero (1980-2025)</h4>
-              <p>
-                En las últimas décadas, el movimiento obrero ha enfrentado desindustrialización, precarización laboral y políticas neoliberales. Sin embargo, ha surgido nueva organización en la "gig economy", resistencia en el Sur Global, y mayor participación de mujeres con enfoque interseccional.
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Diáspora */}
-      <motion.section 
-        id="diaspora"
-        ref={sectionRefs.diaspora}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-black' : 'bg-white'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">DIÁSPORA</h2>
-          <p className="text-lg mb-4">
-            La diáspora dominicana constituye una de las fuerzas más dinámicas y solidarias de la nación. Se estima que más de <strong>2.5 millones de dominicanos y dominicanas</strong> viven en el exterior, principalmente en <strong>Estados Unidos, España, Puerto Rico, Italia y Canadá</strong>.
-          </p>
-          <p className="text-lg mb-4">
-            Según el <strong>Banco Central de la República Dominicana</strong>, las remesas familiares enviadas por la diáspora superaron los <strong>USD 10,000 millones en 2023</strong>, representando alrededor del <strong>9% del PIB nacional</strong>.
-          </p>
-          <p className="text-lg mb-4">Más allá del dinero, la diáspora impulsa el desarrollo mediante:</p>
-          <ul className="list-disc list-inside space-y-2 mb-4">
-            <li><strong>Inversiones productivas</strong>: Emprendimientos en turismo, agroindustria, tecnología y vivienda.</li>
-            <li><strong>Transferencia de conocimientos</strong>: Profesionales que regresan o colaboran con instituciones locales.</li>
-            <li><strong>Activismo cívico</strong>: Organizaciones comunitarias que defienden los derechos de los migrantes.</li>
-          </ul>
+      {/* Sobre Nosotros */}
+      <section ref={sections.sobreNosotros} className="p-6 m-4 border-4 border-red-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          👊 SOBRE NOSOTROS 👊
+        </h2>
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6">
           <p>
-            El MSR reconoce a la diáspora como parte inseparable del pueblo dominicano y aboga por políticas públicas que protejan sus derechos y potencien su rol como agente de desarrollo soberano y popular.
+            El Movimiento por la Salvación de la República (MSR) nace como respuesta a la crisis moral, política y económica que asfixia a nuestro pueblo.
+          </p>
+          <p className="mt-2">
+            Inspirados en el pensamiento de Hostos, los restauradores y las luchas populares del siglo XX, nos proponemos construir una República que garantice la justicia, la soberanía y la dignidad humana.
           </p>
         </div>
-      </motion.section>
 
-      {/* Derechos Humanos */}
-      <motion.section 
-        id="derechos"
-        ref={sectionRefs.derechos}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-3xl text-center">
-          <div className="flex justify-center mb-6">
-            <Scale className="text-red-500" size={48} />
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">⚖️ DERECHOS HUMANOS ⚖️</h2>
-          <h3 className="text-lg font-bold mb-3">Declaración Universal de Derechos Humanos</h3>
-          <p className="text-sm mb-4">Adoptada por la Asamblea General de las Naciones Unidas el 10 de diciembre de 1948</p>
-          <blockquote className="text-xl italic border-l-4 border-red-600 pl-6 py-2 my-4">
-            Considerando que la libertad, la justicia y la paz en el mundo tienen por base el reconocimiento de la dignidad intrínseca y de los derechos iguales e inalienables de todos los miembros de la familia humana.
-          </blockquote>
-          <div className="space-y-3 text-left max-w-2xl mx-auto">
-            <p><strong>Artículo 1:</strong> Todos los seres humanos nacen libres e iguales en dignidad y derechos.</p>
-            <p><strong>Artículo 3:</strong> Todo individuo tiene derecho a la vida, a la libertad y a la seguridad de su persona.</p>
-            <p><strong>Artículo 25:</strong> Toda persona tiene derecho a un nivel de vida adecuado que le asegure la salud y el bienestar, y en especial la alimentación, el vestido, la vivienda y la asistencia médica.</p>
-            <p><strong>Artículo 26:</strong> Toda persona tiene derecho a la educación. La educación debe ser gratuita, al menos en lo concerniente a la instrucción elemental y fundamental.</p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Artículos */}
-      <motion.section 
-        id="articulos"
-        ref={sectionRefs.articulos}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-black' : 'bg-white'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-            <div className="flex items-center mb-4 md:mb-0">
-              <Newspaper className="text-red-500 mr-3" size={32} />
-              <h2 className="text-2xl md:text-3xl font-bold">ARTÍCULOS</h2>
-            </div>
-            <div className="flex space-x-2 overflow-x-auto pb-2">
-              {categories.map(category => (
-                <button
-                  key={category}
-                  onClick={() => setFilterCategory(category)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ${
-                    filterCategory === category 
-                      ? 'bg-red-600 text-white' 
-                      : darkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {filteredArticles.map(article => (
-              <motion.div 
-                key={article.id} 
-                className={`rounded-lg overflow-hidden shadow-xl cursor-pointer ${
-                  darkMode ? 'bg-green-900' : 'bg-green-100'
-                }`}
-                whileHover={{ y: -5, boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)" }}
-                onClick={() => openArticle(article)}
-              >
-                <div className="p-6">
-                  <span className={`text-sm font-semibold ${
-                    darkMode ? 'text-red-400' : 'text-red-600'
-                  }`}>{article.category}</span>
-                  <h3 className="text-xl font-bold mt-2 mb-3">{article.title}</h3>
-                  {article.author && <p className={`text-sm italic mb-2 ${
-                    darkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>Por {article.author}</p>}
-                  <p className={`line-clamp-3 ${
-                    darkMode ? 'text-gray-200' : 'text-gray-700'
-                  }`}>
-                    {article.content.substring(0, 150)}...
-                  </p>
-                  <p className={`text-sm mt-4 ${
-                    darkMode ? 'text-gray-400' : 'text-gray-500'
-                  }`}>{new Date(article.date).toLocaleDateString('es-ES')}</p>
-                </div>
-              </motion.div>
+        {/* Consejo Directivo */}
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
+          <h3 className="text-yellow-400 font-bold text-lg mb-3 text-center">CONSEJO DIRECTIVO</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { name: "Alejandro Ortiz", role: "Director General y Editor Jefe" },
+              { name: "Dolores Ricart", role: "Secretaria de Organización y Movilización Popular" },
+              { name: "Nelson Díaz", role: "Coordinador de Análisis Político y Coyuntura Internacional" }
+            ].map((member, index) => (
+              <div key={index} className="text-center p-3 border border-red-500 bg-black">
+                <p className="font-bold text-green-400">{member.name}</p>
+                <p className="text-sm text-gray-300 mt-1">{member.role}</p>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
 
-      {/* Actividades Recientes */}
-      <motion.section 
-        id="actividades"
-        ref={sectionRefs.actividades}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-green-900' : 'bg-green-100'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">ACTIVIDADES RECIENTES</h2>
-          <div className="space-y-6">
-            <motion.div 
-              className={`p-6 rounded-lg ${
-                darkMode ? 'bg-black' : 'bg-white'
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[700px] overflow-y-auto">
+          {articuloMovimientoObrero.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("EL MOVIMIENTO") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("---")
+                  ? "font-bold text-red-400 mt-4"
+                  : line.startsWith("EROSIÓN") || line.startsWith("NUEVAS") || line.startsWith("LUCHAS") || line.startsWith("ROL") || line.startsWith("DESAFÍOS") || line.startsWith("CONCLUSIÓN")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : ""
               }`}
-              whileHover={{ scale: 1.01 }}
             >
-              <h3 className="text-xl font-bold mb-2">Asamblea Nacional por la Soberanía Alimentaria</h3>
-              <p className={`text-red-400`}>22 de mayo, 2024 — Santo Domingo</p>
-              <p>Agricultores, economistas y comunidades debatieron soluciones a la crisis alimentaria.</p>
-            </motion.div>
-            <motion.div 
-              className={`p-6 rounded-lg ${
-                darkMode ? 'bg-black' : 'bg-white'
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Valores */}
+      <section ref={sections.valores} className="p-6 m-4 border-4 border-green-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          🌱 NUESTROS VALORES 🌱
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3 mb-6">
+          {[
+            { title: 'Solidaridad', desc: 'Actuamos con empatía y compromiso con las luchas del pueblo trabajador, campesino y marginado.' },
+            { title: 'Justicia Social', desc: 'Defendemos la redistribución de la riqueza, la educación y salud públicas, y los derechos de todos los sectores oprimidos.' },
+            { title: 'Antiimperialismo', desc: 'Rechazamos toda forma de dominación extranjera y luchamos por la soberanía nacional en todos los ámbitos.' }
+          ].map((val, i) => (
+            <div key={i} className="bg-gray-900 p-4 border border-green-500">
+              <h3 className="text-yellow-400 font-bold mb-2">{val.title}</h3>
+              <p className="text-sm">{val.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="bg-gray-900 p-4 border border-green-500 mb-6 max-h-[700px] overflow-y-auto">
+          {articuloNeoliberalismo.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("NEOLIBERALISMO") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("---")
+                  ? "font-bold text-green-400 mt-4"
+                  : line.startsWith("CAUSAS") || line.startsWith("CONSECUENCIAS") || line.startsWith("IMPACTO") || line.startsWith("CONCLUSIÓN")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : ""
               }`}
-              whileHover={{ scale: 1.01 }}
             >
-              <h3 className="text-xl font-bold mb-2">Campaña "Educación para Todos"</h3>
-              <p className={`text-red-400`}>21 de mayo, 2024 — Barrios populares</p>
-              <p>Brigadas de alfabetización y apoyo escolar en zonas marginadas.</p>
-            </motion.div>
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Teología de Liberación */}
+      <section ref={sections.teologiaLiberacion} className="p-6 m-4 border-4 border-red-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          ✝️ TEOLOGÍA DE LIBERACIÓN ✝️
+        </h2>
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
+          <p>
+            La Teología de Liberación no es una doctrina religiosa, sino una opción preferencial por los pobres. Nace en América Latina como respuesta evangélica a la opresión, la injusticia y la violencia estructural. Para el MSR, es una fuente ética y espiritual fundamental en la lucha por la justicia social.
+          </p>
+        </div>
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[800px] overflow-y-auto">
+          {articuloTeologiaLiberacion.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("FE, JUSTICIA") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("---")
+                  ? "font-bold text-red-400 mt-4"
+                  : line.startsWith("UNA OPción") || line.startsWith("CONTRA EL")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Internacional */}
+      <section ref={sections.internacional} className="p-6 m-4 border-4 border-red-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          🌍 INTERNACIONAL 🌍
+        </h2>
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
+          <p>
+            El mundo multipolar avanza. La lucha antiimperialista se fortalece en cada rincón del Sur Global.
+          </p>
+        </div>
+
+        {/* Artículo de Actualidad - Alejandro Ortiz */}
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[800px] overflow-y-auto">
+          {articuloActualidadAlejandroOrtiz.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("ACTUALIDAD") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("Por: Alejandro Ortiz")
+                  ? "font-bold text-green-400 mt-2"
+                  : line === "---"
+                  ? "font-bold text-red-400 mt-4"
+                  : line.startsWith("El inicio") || 
+                    line.startsWith("El surgimiento") || 
+                    line.startsWith("Crisis") || 
+                    line.startsWith("Perspectivas") || 
+                    line.startsWith("Conclusión")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+
+        {/* Deuda y Dependencia */}
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[700px] overflow-y-auto">
+          {articuloDeudaDependencia.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("DEUDA") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("---")
+                  ? "font-bold text-red-400 mt-4"
+                  : line.startsWith("LA DEUDA") || line.startsWith("DEPENDENCIA") || line.startsWith("DIMENSIÓN") || line.startsWith("CONSECUENCIAS") || line.startsWith("PROPUESTAS") || line.startsWith("CONCLUSIÓN")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+
+        {/* Venezuela */}
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[400px] overflow-y-auto">
+          {declaracionVenezuela.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("🇻🇪 VENEZUELA") 
+                  ? "font-bold text-yellow-400 text-xl mt-2"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : line.includes("MSR") || line.includes("antiimperialista") || line.includes("¡Manos fuera")
+                  ? "font-bold"
+                  : line.startsWith("Publicado")
+                  ? "text-xs text-gray-400 mt-2 italic"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+
+        {/* Palestina */}
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[400px] overflow-y-auto">
+          {declaracionPalestina.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("🌍 ¡ALTO") 
+                  ? "font-bold text-yellow-400 text-xl mt-2"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : line.includes("MSR") || line.includes("antiimperialista")
+                  ? "font-bold"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Diáspora */}
+      <section ref={sections.diaspora} className="p-6 m-4 border-4 border-red-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          🌍 DIÁSPORA 🌍
+        </h2>
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
+          <p>
+            La diáspora dominicana constituye una de las fuerzas más dinámicas y solidarias de la nación. Se estima que más de <strong>2.5 millones de dominicanos y dominicanas</strong> viven en el exterior.
+          </p>
+          <p className="mt-2">
+            El MSR reconoce a la diáspora como parte inseparable del pueblo dominicano.
+          </p>
+        </div>
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6 max-h-[500px] overflow-y-auto">
+          {[
+            "LA DIÁSPORA DOMINICANA: NUESTRA EXTENSIÓN EN EL MUNDO",
+            "",
+            "Más de 2.5 millones de hermanos y hermanas viven fuera de nuestras fronteras. Lejos de ser una simple consecuencia de la exclusión económica, la diáspora es una expresión de la resistencia colectiva del pueblo dominicano.",
+            "",
+            "IMPACTO ECONÓMICO",
+            "Las remesas enviadas por la diáspora sostienen millones de hogares y dinamizan la economía local. Este flujo no es caridad: es un acto de solidaridad familiar y comunitaria que mantiene viva la red social en tiempos de crisis.",
+            "",
+            "APORTES CIENTÍFICOS Y CULTURALES",
+            "Dominicanos y dominicanas en el exterior destacan en universidades, laboratorios, artes y medios de comunicación alrededor del mundo. Su éxito no es individual: es el fruto de una cultura de esfuerzo y amor por el saber que nace en nuestros barrios y escuelas.",
+            "",
+            "UNA RELACIÓN DE DIGNIDAD",
+            "El MSR exige:",
+            "• Derecho al voto en el exterior",
+            "• Creación de un Consejo Nacional de la Diáspora",
+            "• Programas estatales de cooperación con la diáspora",
+            "• Rechazo a toda política migratoria xenófoba",
+            "",
+            "La diáspora no es una 'comunidad en el extranjero': es el pueblo dominicano extendido en el mundo. Su lucha es nuestra lucha.",
+            "",
+            "— Movimiento por la Salvación de la República (MSR)"
+          ].map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-2 ${
+                line.startsWith("LA DIÁSPORA") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("IMPACTO") || line.startsWith("APORTES") || line.startsWith("UNA RELACIÓN")
+                  ? "font-bold text-yellow-400 mt-3"
+                  : line.startsWith("•")
+                  ? "text-red-400 ml-4"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* Derechos Humanos */}
+      <section ref={sections.derechosHumanos} className="p-6 m-4 border-4 border-green-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          ⚖️ DERECHOS HUMANOS ⚖️
+        </h2>
+        <div className="bg-gray-900 p-4 border border-red-500 mb-6">
+          <p className="text-yellow-400 text-center mb-2">Declaración Universal de Derechos Humanos</p>
+          <p className="text-sm text-center mb-4">
+            Adoptada y proclamada por la Asamblea General de las Naciones Unidas en su Resolución 217 A (III), del 10 de diciembre de 1948
+          </p>
+          <div className="max-h-96 overflow-y-auto p-4 bg-black border border-gray-700">
+            {declaracionUniversal.map((line, index) => (
+              <p key={index} className={`text-sm mb-2 ${line.startsWith('Artículo') || line === 'Preámbulo' ? 'font-bold text-yellow-400 mt-4' : ''}`}>
+                {line}
+              </p>
+            ))}
           </div>
         </div>
-      </motion.section>
+      </section>
+
+      {/* Colaboración */}
+      <section ref={sections.colaboracion} className="p-6 m-4 border-4 border-green-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          ✍️ COLABORACIÓN ✍️
+        </h2>
+        <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
+          <p>
+            Espacio para voces aliadas, intelectuales, trabajadores y luchadores populares que contribuyen con análisis, propuestas y reflexiones desde sus trincheras.
+          </p>
+        </div>
+        <div className="bg-gray-900 p-4 border border-green-500 mb-6 max-h-[700px] overflow-y-auto">
+          {articuloTabacoCompleto.map((line, index) => (
+            <p 
+              key={index} 
+              className={`text-sm mb-3 ${
+                line.startsWith("TABACO") 
+                  ? "font-bold text-yellow-400 text-xl mt-4"
+                  : line.startsWith("Por:") || line.startsWith("— Ing.")
+                  ? "font-bold text-green-400 mt-2"
+                  : line.startsWith("---") || 
+                    line.startsWith("PRIMERAS") || 
+                    line.startsWith("ADOPCIÓN")
+                  ? "font-bold text-yellow-400 mt-4"
+                  : ""
+              }`}
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </section>
 
       {/* Donaciones */}
-      <motion.section 
-        id="donaciones"
-        ref={sectionRefs.donaciones}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-red-900' : 'bg-red-100'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-2xl text-center">
-          <HandCoins className="text-yellow-300 mx-auto mb-4" size={48} />
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">DONACIONES</h2>
-          <p className="text-lg mb-6">
-            El Movimiento por la Salvación de la República (MSR) depende del apoyo solidario de personas comprometidas con la justicia social y la soberanía popular.
+      <section ref={sections.donaciones} className="p-6 m-4 border-4 border-yellow-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          💰 DONACIONES 💰
+        </h2>
+        <div className="bg-gray-900 p-4 border border-yellow-500 text-center">
+          <p className="text-yellow-400 font-bold mb-2">APOYA AL MSR</p>
+          <p className="text-sm mb-4">
+            Tu donación nos permite mantener este sitio y difundir la verdad.
           </p>
-          <p className="text-lg mb-6">
-            Tu donación nos permite mantener este sitio, difundir la verdad y organizar actividades por una República Democrática, Popular y Revolucionaria.
-          </p>
-          <div className="my-6 flex justify-center">
-            <a
-              href="https://www.paypal.com/donate/?business=pablo102158@gmail.com&no_recurring=0&item_name=Apoyo+al+MSR&currency_code=USD"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105"
-            >
-              💰 Donar con PayPal
-            </a>
-          </div>
-          <p className="text-yellow-300 font-semibold italic">
-            ¡Cualquier aporte, por pequeño que sea, hace una gran diferencia!
-          </p>
+          <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-2 font-bold rounded">
+            Donar con PayPal
+          </button>
         </div>
-      </motion.section>
+      </section>
 
       {/* Contacto */}
-      <motion.section 
-        id="contacto"
-        ref={sectionRefs.contacto}
-        className={`py-12 md:py-16 px-4 ${darkMode ? 'bg-black' : 'bg-white'}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center justify-center">
-            <Mail className="text-red-500 mr-3" size={28} /> ✉️ CONTACTO
-          </h2>
-          <div className="space-y-4 text-lg">
-            <p><strong>Escríbenos</strong></p>
-            <p><strong>Únete a Nosotros</strong></p>
-            <p className="font-semibold">Santo Domingo, República Dominicana</p>
-            <p className="flex items-center justify-center gap-2">
-              <Mail size={20} /> contacto@republicaesperanza.org
-            </p>
-          </div>
-          <div className="mt-10 italic text-xl text-yellow-300">
-            “La esperanza no es un sentimiento, es una decisión política.”
-          </div>
-        </div>
-      </motion.section>
-
-      <footer className={`py-6 text-center text-sm ${
-        darkMode ? 'bg-black text-gray-500' : 'bg-gray-100 text-gray-600'
-      }`}>
-        © {new Date().getFullYear()} Movimiento por la Salvación de la República. Todos los derechos reservados.
-      </footer>
-
-      {/* Modal de Artículo */}
-      <AnimatePresence>
-        {selectedArticle && (
-          <motion.div 
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      <section className="p-6 m-4 border-4 border-red-600">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          📧 CONTACTO 📞
+        </h2>
+        <form onSubmit={handleSubmit} className="bg-gray-900 p-4 border border-yellow-500">
+          <label className="block mb-2 text-yellow-400">Escríbenos</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            value={formData.name}
+            onChange={handleInputChange}
+            className="w-full p-2 mb-2 bg-black border border-gray-600 text-white"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="tu@email.com"
+            value={formData.email}
+            onChange={handleInputChange}
+            className="w-full p-2 mb-2 bg-black border border-gray-600 text-white"
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Tu mensaje..."
+            value={formData.message}
+            onChange={handleInputChange}
+            className="w-full p-2 mb-2 bg-black border border-gray-600 text-white h-24"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-red-700 hover:bg-red-600 text-white py-2 font-bold"
           >
-            <div className={`rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto border ${
-              darkMode ? 'bg-gray-900 border-red-700' : 'bg-white border-red-500'
-            }`}>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h2 className="text-2xl font-bold">{selectedArticle.title}</h2>
-                    {selectedArticle.author && <p className={`italic mt-1 ${
-                      darkMode ? 'text-gray-400' : 'text-gray-600'
-                    }`}>Por {selectedArticle.author}</p>}
-                    <p className={`mt-1 ${
-                      darkMode ? 'text-red-400' : 'text-red-600'
-                    }`}>{selectedArticle.category} • {new Date(selectedArticle.date).toLocaleDateString('es-ES')}</p>
-                  </div>
-                  <button onClick={closeArticle} className={`${
-                    darkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-gray-800'
-                  }`}>
-                    <X size={24} />
-                  </button>
-                </div>
-                <div className={`whitespace-pre-line ${
-                  darkMode ? 'text-gray-200' : 'text-gray-800'
-                }`}>
-                  {selectedArticle.content}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ENVIAR MENSAJE
+          </button>
+        </form>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-green-900 p-4 text-center">
+        <div className="border-t border-red-600 pt-4">
+          <p className="text-sm"><strong>Únete a Nosotros</strong></p>
+          <p className="text-xs mt-1 flex items-center justify-center gap-1">
+            <span>📍</span> Santo Domingo, República Dominicana
+          </p>
+          <p className="text-xs flex items-center justify-center gap-1">
+            <span>✉️</span> contacto@republicaesperanza.org
+          </p>
+          <p className="text-red-400 mt-3 font-bold">
+            "La esperanza no es un sentimiento, es una decisión política."
+          </p>
+        </div>
+        <div className="mt-6">
+          <p className="text-sm">© 2024 - Movimiento por la Salvación de la República (MSR)</p>
+          <p className="text-red-400 text-xs mt-1">¡LA VERDAD ESTÁ EN LAS SOMBRAS!</p>
+        </div>
+      </footer>
     </div>
   );
-}
+};
+
+export default App;
