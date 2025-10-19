@@ -8,7 +8,7 @@ const App = () => {
   });
   const [activeSection, setActiveSection] = useState('inicio');
 
-  // ✅ CORRECCIÓN: Cada useRef se declara individualmente (regla de hooks)
+  // Referencias a cada sección
   const inicioRef = useRef(null);
   const sobreNosotrosRef = useRef(null);
   const valoresRef = useRef(null);
@@ -18,6 +18,18 @@ const App = () => {
   const derechosHumanosRef = useRef(null);
   const colaboracionRef = useRef(null);
   const donacionesRef = useRef(null);
+
+  const sections = {
+    inicio: inicioRef,
+    sobreNosotros: sobreNosotrosRef,
+    valores: valoresRef,
+    teologiaLiberacion: teologiaLiberacionRef,
+    internacional: internacionalRef,
+    diaspora: diasporaRef,
+    derechosHumanos: derechosHumanosRef,
+    colaboracion: colaboracionRef,
+    donaciones: donacionesRef
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,18 +43,7 @@ const App = () => {
   };
 
   const scrollToSection = (sectionKey) => {
-    const refs = {
-      inicio: inicioRef,
-      sobreNosotros: sobreNosotrosRef,
-      valores: valoresRef,
-      teologiaLiberacion: teologiaLiberacionRef,
-      internacional: internacionalRef,
-      diaspora: diasporaRef,
-      derechosHumanos: derechosHumanosRef,
-      colaboracion: colaboracionRef,
-      donaciones: donacionesRef
-    };
-    const ref = refs[sectionKey];
+    const ref = sections[sectionKey];
     if (ref?.current) {
       window.scrollTo({
         top: ref.current.offsetTop - 100,
@@ -54,28 +55,19 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
-      const sections = [
-        { key: 'inicio', ref: inicioRef },
-        { key: 'sobreNosotros', ref: sobreNosotrosRef },
-        { key: 'valores', ref: valoresRef },
-        { key: 'teologiaLiberacion', ref: teologiaLiberacionRef },
-        { key: 'internacional', ref: internacionalRef },
-        { key: 'diaspora', ref: diasporaRef },
-        { key: 'derechosHumanos', ref: derechosHumanosRef },
-        { key: 'colaboracion', ref: colaboracionRef },
-        { key: 'donaciones', ref: donacionesRef }
-      ];
-
-      for (const section of sections) {
-        if (!section.ref?.current) continue;
-        const { offsetTop, offsetHeight } = section.ref.current;
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setActiveSection(section.key);
-          break;
+      for (const [key, ref] of Object.entries(sections)) {
+        if (!ref?.current) continue;
+        try {
+          const { offsetTop, offsetHeight } = ref.current;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(key);
+            break;
+          }
+        } catch (err) {
+          console.warn(`Sección ${key} no accesible:`, err);
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -91,18 +83,18 @@ const App = () => {
     "---",
     "El inicio del declive unipolar (2014-2016)",
     "El año 2014 marcó un punto de inflexión en la geopolítica global con la anexión de Crimea por parte de Rusia, como respuesta al golpe de Estado en Ucrania, patrocinado por la OTAN y EEUU, un evento que resucitó tensiones reminiscentes de la Guerra Fría. La respuesta occidental, liderada por Estados Unidos y la Unión Europea, incluyó sanciones económicas y el fortalecimiento de la OTAN en Europa del Este, lo que profundizó la división entre Occidente y Rusia.",
-    "Simultáneamente, el ascenso del Estado Islámico (ISIS) en Siria e Irak planteó un desafío al internacional liderada por Estados Unidos a intervenir militarmente, mientras que Rusia aprovechó la oportunidad para consolidar su influencia en Siria apoyando al régimen de Bashar al-Assad. Estos eventos subrayaron la complejidad de los conflictos contemporáneos, donde intereses nacionales, ideologías y dinámicas regionales se entrelazaban.",
+    "Simultáneamente, el ascenso del Estado Islámico (ISIS) en Siria e Irak planteó un desafío al liderazgo internacional liderado por Estados Unidos a intervenir militarmente, mientras que Rusia aprovechó la oportunidad para consolidar su influencia en Siria apoyando al régimen de Bashar al-Assad. Estos eventos subrayaron la complejidad de los conflictos contemporáneos, donde intereses nacionales, ideologías y dinámicas regionales se entrelazaban.",
     "En paralelo, el Brexit en 2016 representó un golpe significativo para la Unión Europea, exponiendo divisiones internas y debilitando su capacidad de proyectar poder político y económico. Mientras tanto, la elección de Donald Trump como presidente de Estados Unidos introdujo un enfoque más nacionalista y unilateral en la política exterior estadounidense, cuestionando el compromiso de Washington con alianzas tradicionales y acuerdos multilaterales como el Acuerdo de París sobre el clima.",
     "",
     "---",
     "El surgimiento de un mundo multipolar (2017-2020)",
     "La segunda mitad de la década estuvo marcada por el fortalecimiento de China como una superpotencia global. Bajo el liderazgo de Xi Jinping, China lanzó iniciativas ambiciosas como la Franja y la Ruta (BRI), que buscaba expandir su influencia económica y política en Asia, África y Europa. Al mismo tiempo, Pekín intensificó sus reclamos territoriales en el Mar de China Meridional, generando tensiones con países vecinos y Estados Unidos. La guerra comercial entre China y Estados Unidos, iniciada bajo la administración Trump, simbolizó la creciente rivalidad entre ambas potencias, que abarcaba no solo el ámbito económico, sino también tecnológico y militar.",
-    "La pandemia de COVID-19, declarada en 2020, exacerbó las tensiones globales. la gestión de la crisis por parte de Pekín fue vista como un ejemplo de eficiencia autoritaria, mientras que las democracias occidentales enfrentaron críticas por su respuesta fragmentada y descoordinada. La pandemia también aceleró la digitalización de la economía y la sociedad, aumentando la dependencia de tecnologías desarrolladas por empresas chinas como Huawei, lo que generó preocupaciones sobre seguridad y espionaje.",
+    "La pandemia de COVID-19, declarada en 2020, exacerbó las tensiones globales. La gestión de la crisis por parte de Pekín fue vista como un ejemplo de eficiencia autoritaria, mientras que las democracias occidentales enfrentaron críticas por su respuesta fragmentada y descoordinada. La pandemia también aceleró la digitalización de la economía y la sociedad, aumentando la dependencia de tecnologías desarrolladas por empresas chinas como Huawei, lo que generó preocupaciones sobre seguridad y espionaje.",
     "En América Latina, África y partes de Asia, la competencia entre China y Estados Unidos por la influencia económica y política se intensificó. China ofreció préstamos y ayuda humanitaria durante la pandemia, mientras que Estados Unidos intentó contrarrestar esta influencia mediante iniciativas como el \"Build Back Better World\" (B3W). Sin embargo, la percepción de muchos países en desarrollo fue que ambas potencias priorizaban sus propios intereses sobre el bienestar local.",
     "",
     "---",
     "Crisis y realineamientos (2021-2025)",
-    "La guerra genocida de Ucrania contra el Dombas y Dotnek. Mas el incumplimientos de los acuerdos de Minsk por parte de Ucrania y los garantes. provoco la Operacion militar Especial que condujo a la invasión Rusa de Ucrania en febrero de 2022. esto marcó otro hito en la geopolítica global. Esta guerra no solo devastó a Ucrania, sino que también polarizó aún más el sistema. Occidente impuso sanciones sin precedentes a Rusia, mientras que países como China, India y varias naciones del Sur Global adoptaron posiciones más equilibradas o neutrales. La guerra también aceleró la transición hacia un orden energético más diversificado, con Europa reduciendo su dependencia del gas ruso y cambiando a USA como su principal proveedor energetico.",
+    "La guerra genocida de Ucrania contra el Donbás y Donetsk, más el incumplimiento de los acuerdos de Minsk por parte de Ucrania y los garantes, provocó la Operación Militar Especial que condujo a la invasión rusa de Ucrania en febrero de 2022. Esto marcó otro hito en la geopolítica global. Esta guerra no solo devastó a Ucrania, sino que también polarizó aún más el sistema. Occidente impuso sanciones sin precedentes a Rusia, mientras que países como China, India y varias naciones del Sur Global adoptaron posiciones más equilibradas o neutrales. La guerra también aceleró la transición hacia un orden energético más diversificado, con Europa reduciendo su dependencia del gas ruso y cambiando a EE.UU. como su principal proveedor energético.",
     "Durante este período, las tensiones entre China y Estados Unidos alcanzaron niveles récord. La visita de Nancy Pelosi a Taiwán en 2022 provocó una escalada militar en el Estrecho de Taiwán, mientras que las restricciones estadounidenses a la exportación de semiconductores avanzados a China intensificaron la carrera tecnológica. En respuesta, China fortaleció sus vínculos con Rusia y otros países no alineados con Occidente, formando un bloque informal conocido como el \"BRICS+\".",
     "En Medio Oriente, el acuerdo entre Israel y varios países árabes mediado por Estados Unidos en 2020 (los Acuerdos de Abraham) alteró las dinámicas regionales, aunque las tensiones entre Irán y Arabia Saudita persistieron. El colapso de Afganistán tras la retirada estadounidense en 2021 dejó un vacío de poder que fue rápidamente ocupado por los talibanes, destacando los límites del intervencionismo occidental.",
     "Finalmente, la crisis climática y la transición energética emergieron como temas centrales en la agenda global. Las conferencias climáticas anuales (COP) revelaron las dificultades de lograr consensos entre países desarrollados y en desarrollo, mientras que la competencia por recursos críticos como litio, cobalto y tierras raras adquirió una dimensión estratégica.",
@@ -115,7 +107,7 @@ const App = () => {
     "",
     "---",
     "Conclusión",
-    "La geopolítica entre 2014 y 2025 ha sido testigo de cambios fundamentales que han redefinido el orden global. Desde la reunificacion de Crimea hasta la guerra en Ucrania, pasando por la pandemia de COVID-19 y la rivalidad entre China y Estados Unidos, estos años han estado marcados por la volatilidad y la incertidumbre. A medida que nos acercamos a 2025, queda claro que el mundo está entrando en una nueva era de competencia estratégica y realineamientos políticos. La pregunta clave es si las naciones podrán superar sus diferencias y trabajar juntas para enfrentar los desafíos compartidos, o si el mundo seguirá fragmentándose en bloques rivales."
+    "La geopolítica entre 2014 y 2025 ha sido testigo de cambios fundamentales que han redefinido el orden global. Desde la reunificación de Crimea hasta la guerra en Ucrania, pasando por la pandemia de COVID-19 y la rivalidad entre China y Estados Unidos, estos años han estado marcados por la volatilidad y la incertidumbre. A medida que nos acercamos a 2025, queda claro que el mundo está entrando en una nueva era de competencia estratégica y realineamientos políticos. La pregunta clave es si las naciones podrán superar sus diferencias y trabajar juntas para enfrentar los desafíos compartidos, o si el mundo seguirá fragmentándose en bloques rivales."
   ];
 
   const declaracionPalestina = [
@@ -449,7 +441,7 @@ const App = () => {
     "• Actuar para transformarla.",
     "",
     "---",
-    "UNA OPción PREFERENCIAL POR LOS POBRES",
+    "UNA OPCIÓN PREFERENCIAL POR LOS POBRES",
     "Esta corriente teológica no busca fundar una nueva religión, sino recuperar el núcleo radical del mensaje de Jesús: liberación de los cautivos, justicia para los marginados, denuncia de los poderes opresores. Monseñor Romero lo expresó con claridad: “Si me matan, resucitaré en mi pueblo”.",
     "",
     "El Documento de Puebla (1979), de la Conferencia Episcopal Latinoamericana, afirmó que la Iglesia debe hacer una “opción preferencial por los pobres”, no por ideología, sino por fidelidad al Evangelio. Esta opción implica compromiso con la transformación de las estructuras injustas, no solo con la caridad asistencial.",
@@ -495,6 +487,7 @@ const App = () => {
           <span>📰</span> LA VERDAD QUE NADIE QUIERE CONTAR
         </p>
       </header>
+
       {/* Navigation */}
       <nav className="bg-green-800 p-3 flex flex-wrap justify-center gap-2 sticky top-24 z-40">
         {[
@@ -521,8 +514,9 @@ const App = () => {
           </button>
         ))}
       </nav>
+
       {/* Hero Section */}
-      <section ref={inicioRef} className="p-6 m-4 border-4 border-yellow-500 bg-gradient-to-r from-red-900 to-green-900">
+      <section ref={sections.inicio} className="p-6 m-4 border-4 border-yellow-500 bg-gradient-to-r from-red-900 to-green-900">
         <h2 className="text-red-400 text-xs uppercase mb-2">¡LLAMADO A LA ACCIÓN!</h2>
         <h2 className="text-yellow-400 text-2xl md:text-3xl font-bold mb-4">
           ¡ÚNETE A LA LUCHA POR UNA REPÚBLICA DEMOCRÁTICA, POPULAR Y REVOLUCIONARIA!
@@ -531,8 +525,9 @@ const App = () => {
           El Movimiento por la Salvación de la República convoca a todas las fuerzas populares a organizarse, resistir y construir el futuro que merecemos.
         </p>
       </section>
+
       {/* Sobre Nosotros */}
-      <section ref={sobreNosotrosRef} className="p-6 m-4 border-4 border-red-600">
+      <section ref={sections.sobreNosotros} className="p-6 m-4 border-4 border-red-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           👊 SOBRE NOSOTROS 👊
         </h2>
@@ -544,6 +539,7 @@ const App = () => {
             Inspirados en el pensamiento de Hostos, los restauradores y las luchas populares del siglo XX, nos proponemos construir una República que garantice la justicia, la soberanía y la dignidad humana.
           </p>
         </div>
+
         {/* Consejo Directivo */}
         <div className="bg-gray-900 p-4 border border-yellow-500 mb-6">
           <h3 className="text-yellow-400 font-bold text-lg mb-3 text-center">CONSEJO DIRECTIVO</h3>
@@ -560,6 +556,7 @@ const App = () => {
             ))}
           </div>
         </div>
+
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[700px] overflow-y-auto">
           {articuloMovimientoObrero.map((line, index) => (
             <p 
@@ -579,8 +576,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Valores */}
-      <section ref={valoresRef} className="p-6 m-4 border-4 border-green-600">
+      <section ref={sections.valores} className="p-6 m-4 border-4 border-green-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           🌱 NUESTROS VALORES 🌱
         </h2>
@@ -596,6 +594,7 @@ const App = () => {
             </div>
           ))}
         </div>
+
         <div className="bg-gray-900 p-4 border border-green-500 mb-6 max-h-[700px] overflow-y-auto">
           {articuloNeoliberalismo.map((line, index) => (
             <p 
@@ -617,8 +616,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Teología de Liberación */}
-      <section ref={teologiaLiberacionRef} className="p-6 m-4 border-4 border-red-600">
+      <section ref={sections.teologiaLiberacion} className="p-6 m-4 border-4 border-red-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           ✝️ TEOLOGÍA DE LIBERACIÓN ✝️
         </h2>
@@ -627,6 +627,7 @@ const App = () => {
             La Teología de Liberación no es una doctrina religiosa, sino una opción preferencial por los pobres. Nace en América Latina como respuesta evangélica a la opresión, la injusticia y la violencia estructural. Para el MSR, es una fuente ética y espiritual fundamental en la lucha por la justicia social.
           </p>
         </div>
+
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[800px] overflow-y-auto">
           {articuloTeologiaLiberacion.map((line, index) => (
             <p 
@@ -636,7 +637,7 @@ const App = () => {
                   ? "font-bold text-yellow-400 text-xl mt-4"
                   : line.startsWith("---")
                   ? "font-bold text-red-400 mt-4"
-                  : line.startsWith("UNA OPción") || line.startsWith("CONTRA EL")
+                  : line.startsWith("UNA OPCIÓN") || line.startsWith("CONTRA EL")
                   ? "font-bold text-yellow-400 mt-3"
                   : line.startsWith("•")
                   ? "text-red-400 ml-4"
@@ -648,8 +649,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Internacional */}
-      <section ref={internacionalRef} className="p-6 m-4 border-4 border-red-600">
+      <section ref={sections.internacional} className="p-6 m-4 border-4 border-red-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           🌍 INTERNACIONAL 🌍
         </h2>
@@ -658,6 +660,7 @@ const App = () => {
             El mundo multipolar avanza. La lucha antiimperialista se fortalece en cada rincón del Sur Global.
           </p>
         </div>
+
         {/* Artículo de Actualidad - Alejandro Ortiz */}
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[800px] overflow-y-auto">
           {articuloActualidadAlejandroOrtiz.map((line, index) => (
@@ -683,6 +686,7 @@ const App = () => {
             </p>
           ))}
         </div>
+
         {/* Deuda y Dependencia */}
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[700px] overflow-y-auto">
           {articuloDeudaDependencia.map((line, index) => (
@@ -704,6 +708,7 @@ const App = () => {
             </p>
           ))}
         </div>
+
         {/* Venezuela */}
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[400px] overflow-y-auto">
           {declaracionVenezuela.map((line, index) => (
@@ -725,6 +730,7 @@ const App = () => {
             </p>
           ))}
         </div>
+
         {/* Palestina */}
         <div className="bg-gray-900 p-4 border border-red-500 mb-6 max-h-[400px] overflow-y-auto">
           {declaracionPalestina.map((line, index) => (
@@ -745,8 +751,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Diáspora */}
-      <section ref={diasporaRef} className="p-6 m-4 border-4 border-red-600">
+      <section ref={sections.diaspora} className="p-6 m-4 border-4 border-red-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           🌍 DIÁSPORA 🌍
         </h2>
@@ -758,6 +765,7 @@ const App = () => {
             El MSR reconoce a la diáspora como parte inseparable del pueblo dominicano.
           </p>
         </div>
+
         <div className="bg-gray-900 p-4 border border-yellow-500 mb-6 max-h-[500px] overflow-y-auto">
           {[
             "LA DIÁSPORA DOMINICANA: NUESTRA EXTENSIÓN EN EL MUNDO",
@@ -798,8 +806,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Derechos Humanos */}
-      <section ref={derechosHumanosRef} className="p-6 m-4 border-4 border-green-600">
+      <section ref={sections.derechosHumanos} className="p-6 m-4 border-4 border-green-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           ⚖️ DERECHOS HUMANOS ⚖️
         </h2>
@@ -817,8 +826,9 @@ const App = () => {
           </div>
         </div>
       </section>
+
       {/* Colaboración */}
-      <section ref={colaboracionRef} className="p-6 m-4 border-4 border-green-600">
+      <section ref={sections.colaboracion} className="p-6 m-4 border-4 border-green-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           ✍️ COLABORACIÓN ✍️
         </h2>
@@ -827,6 +837,7 @@ const App = () => {
             Espacio para voces aliadas, intelectuales, trabajadores y luchadores populares que contribuyen con análisis, propuestas y reflexiones desde sus trincheras.
           </p>
         </div>
+
         <div className="bg-gray-900 p-4 border border-green-500 mb-6 max-h-[700px] overflow-y-auto">
           {articuloTabacoCompleto.map((line, index) => (
             <p 
@@ -848,8 +859,9 @@ const App = () => {
           ))}
         </div>
       </section>
+
       {/* Donaciones */}
-      <section ref={donacionesRef} className="p-6 m-4 border-4 border-yellow-600">
+      <section ref={sections.donaciones} className="p-6 m-4 border-4 border-yellow-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           💰 DONACIONES 💰
         </h2>
@@ -863,6 +875,7 @@ const App = () => {
           </button>
         </div>
       </section>
+
       {/* Contacto */}
       <section className="p-6 m-4 border-4 border-red-600">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -904,6 +917,7 @@ const App = () => {
           </button>
         </form>
       </section>
+
       {/* Footer */}
       <footer className="bg-green-900 p-4 text-center">
         <div className="border-t border-red-600 pt-4">
@@ -919,7 +933,7 @@ const App = () => {
           </p>
         </div>
         <div className="mt-6">
-          <p className="text-sm">© 2024 - Movimiento por la Salvación de la República (MSR)</p>
+          <p className="text-sm">© 2025 - Movimiento por la Salvación de la República (MSR)</p>
           <p className="text-red-400 text-xs mt-1">¡LA VERDAD ESTÁ EN LAS SOMBRAS!</p>
         </div>
       </footer>
