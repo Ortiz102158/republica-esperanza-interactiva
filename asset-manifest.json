@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/republica-esperanza-interactiva/static/js/main.00b54026.js",
-    "index.html": "/republica-esperanza-interactiva/index.html",
-    "main.00b54026.js.map": "/republica-esperanza-interactiva/static/js/main.00b54026.js.map"
+    "main.js": "/republica-esperanza/static/js/main.00b54026.js",
+    "index.html": "/republica-esperanza/index.html",
+    "main.00b54026.js.map": "/republica-esperanza/static/js/main.00b54026.js.map"
   },
   "entrypoints": [
     "static/js/main.00b54026.js"
