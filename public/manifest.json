@@ -1,25 +1,73 @@
-{
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+// src/App.js
+import React from 'react';
+import './App.css'; // lo dejamos por ahora, pero ya no afectará mucho
+
+function App() {
+  return (
+    <div className="app-reconstruida" style={{ padding: '2rem 1rem', fontFamily: 'system-ui, sans-serif', maxWidth: '800px', margin: '0 auto', lineHeight: 1.6 }}>
+      <header style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <h1 style={{ fontSize: '1.8rem', fontWeight: 'bold', lineHeight: 1.3 }}>
+          ¡ÚNETE A LA LUCHA POR UNA REPÚBLICA DEMOCRÁTICA, POPULAR Y REVOLUCIONARIA!
+        </h1>
+        <p style={{ marginTop: '1rem' }}>
+          El <strong>Movimiento por la Salvación de la República (MSR)</strong> convoca a todas las fuerzas populares a organizarse, resistir y construir el futuro que merecemos.
+        </p>
+      </header>
+
+      <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>✊ SOBRE NOSOTROS ✊</h2>
+        <p>
+          El <strong>Movimiento por la Salvación de la República (MSR)</strong> nace como respuesta a la crisis moral, política y económica que asfixia a nuestro pueblo.
+        </p>
+        <p>
+          Inspirados en el pensamiento de <strong>Hostos</strong>, los <strong>restauradores</strong> y las <strong>luchas populares del siglo XX</strong>, nos proponemos construir una República que garantice la <strong>justicia</strong>, la <strong>soberanía</strong> y la <strong>dignidad humana</strong>.
+        </p>
+      </section>
+
+      <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>🌱 NUESTROS VALORES</h2>
+        <ul style={{ paddingLeft: '1.2rem', lineHeight: 1.8 }}>
+          <li><strong>Solidaridad</strong><br />Actuamos con empatía y compromiso con las luchas del pueblo trabajador, campesino y marginado.</li>
+          <li><strong>Justicia Social</strong><br />Defendemos la redistribución de la riqueza, la educación y salud públicas, y los derechos de todos los sectores oprimidos.</li>
+          <li><strong>Antiimperialismo</strong><br />Rechazamos toda forma de dominación extranjera y luchamos por la soberanía nacional en todos los ámbitos.</li>
+        </ul>
+      </section>
+
+      <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>🌍 INTERNACIONAL</h2>
+        <p>El mundo multipolar avanza. La lucha antiimperialista se fortalece en cada rincón del <strong>Sur Global</strong>.</p>
+      </section>
+
+      <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>🌐 DIÁSPORA</h2>
+        <p>La diáspora dominicana constituye una de las fuerzas más dinámicas y solidarias de la nación. Se estima que más de <strong>2.5 millones de dominicanos y dominicanas</strong> viven en el exterior.</p>
+        <p>El MSR reconoce a la diáspora como <strong>parte inseparable del pueblo dominicano</strong>.</p>
+      </section>
+
+      <section style={{ marginBottom: '2rem', fontStyle: 'italic', textAlign: 'center' }}>
+        <h2>⚖️ DERECHOS HUMANOS ⚖️</h2>
+        <p>“Todos los seres humanos nacen libres e iguales en dignidad y derechos.”</p>
+        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>— Declaración Universal de Derechos Humanos</p>
+      </section>
+
+      <section style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <h2>💙 DONACIONES</h2>
+        <p>Apóyanos para seguir construyendo la República que soñamos.</p>
+      </section>
+
+      <footer style={{ textAlign: 'center', borderTop: '1px solid #ddd', paddingTop: '1.5rem' }}>
+        <h2>✉️ CONTACTO</h2>
+        <p>
+          Escríbenos a: <a href="mailto:contacto@republicaesperanza.org" style={{ color: '#1a5fb4', textDecoration: 'underline' }}>contacto@republicaesperanza.org</a>
+        </p>
+        <p>Santo Domingo, República Dominicana</p>
+        <div style={{ marginTop: '1.5rem', fontWeight: 'bold' }}>¡ÚNETE A NOSOTROS!</div>
+        <div style={{ marginTop: '1rem', fontStyle: 'italic' }}>
+          “La esperanza no es un sentimiento, es una decisión política.”
+        </div>
+      </footer>
+    </div>
+  );
 }
+
+export default App;
