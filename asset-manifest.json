@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/republica-esperanza-interactiva/static/css/main.f855e6bc.css",
-    "main.js": "/republica-esperanza-interactiva/static/js/main.19b0d1d7.js",
-    "static/js/453.2cd48471.chunk.js": "/republica-esperanza-interactiva/static/js/453.2cd48471.chunk.js",
-    "static/media/logo.svg": "/republica-esperanza-interactiva/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/republica-esperanza-interactiva/static/css/main.e6c13ad2.css",
+    "main.js": "/republica-esperanza-interactiva/static/js/main.4a044fda.js",
     "index.html": "/republica-esperanza-interactiva/index.html",
-    "main.f855e6bc.css.map": "/republica-esperanza-interactiva/static/css/main.f855e6bc.css.map",
-    "main.19b0d1d7.js.map": "/republica-esperanza-interactiva/static/js/main.19b0d1d7.js.map",
-    "453.2cd48471.chunk.js.map": "/republica-esperanza-interactiva/static/js/453.2cd48471.chunk.js.map"
+    "main.e6c13ad2.css.map": "/republica-esperanza-interactiva/static/css/main.e6c13ad2.css.map",
+    "main.4a044fda.js.map": "/republica-esperanza-interactiva/static/js/main.4a044fda.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.19b0d1d7.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.4a044fda.js"
   ]
 }
