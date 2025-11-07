@@ -2,123 +2,257 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>República de la Esperanza — MSR</title>
+  <meta name="description" content="Movimiento por la Salvación de la República: programa integral para una República democrática, popular y revolucionaria. Memoria, justicia, soberanía y esperanza para el pueblo dominicano.">
+  
+  <!-- Open Graph / Redes -->
+  <meta property="og:title" content="República de la Esperanza — MSR">
+  <meta property="og:description" content="Programa político del Movimiento por la Salvación de la República: justicia social, antiimperialismo, memoria histórica y poder popular.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ortiz102158.github.io/republica-esperanza-interactiva/">
+  <meta name="twitter:card" content="summary">
+
   <style>
     :root {
       --rojo: #d32f2f;
-      --azul: #1976d2;
       --verde: #2e7d32;
-      --gris: #424242;
+      --negro: #1a1a1a;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      color: var(--gris);
-      max-width: 800px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      line-height: 1.7;
+      color: var(--negro);
+      max-width: 880px;
       margin: 2rem auto;
-      padding: 0 1.2rem;
+      padding: 0 1.5rem;
+      background-color: #fff;
+    }
+    main {
+      margin-bottom: 3rem;
+    }
+    h1 {
+      color: var(--rojo);
+      text-align: center;
+      font-size: 2.1rem;
+      margin: 1.8rem 0 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
     h2 {
       color: var(--rojo);
-      border-bottom: 1px solid #eee;
-      padding-bottom: 0.35rem;
-      margin: 2.2rem 0 1rem;
-      font-size: 1.4rem;
+      border-bottom: 2px solid var(--rojo);
+      padding-bottom: 0.4rem;
+      margin: 2.4rem 0 1.2rem;
+      font-size: 1.55rem;
+      font-weight: 700;
     }
     h3 {
-      color: var(--azul);
-      margin: 1.4rem 0 0.8rem;
-      font-size: 1.15rem;
+      color: var(--verde);
+      margin: 1.8rem 0 0.9rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    h4 {
+      color: var(--negro);
+      margin: 1.3rem 0 0.7rem;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
     strong {
       color: var(--verde);
-      font-weight: 600;
+      font-weight: 700;
+    }
+    em {
+      color: var(--rojo);
     }
     blockquote {
       font-style: italic;
-      border-left: 4px solid var(--rojo);
-      padding: 1rem 1.3rem;
-      margin: 2rem 0;
-      background: #fff9f9;
-      color: var(--gris);
+      border-left: 5px solid var(--rojo);
+      padding: 1.2rem 1.5rem;
+      margin: 2.2rem 0;
+      background: #fef8f8;
+      color: var(--negro);
+      font-size: 1.05rem;
     }
     .contacto {
-      background: #f8f9fa;
-      padding: 1.2rem;
-      border-radius: 6px;
-      margin-top: 1.5rem;
+      background: #f0f8f0;
+      padding: 1.4rem;
+      border-radius: 8px;
+      margin-top: 1.6rem;
+      border-left: 4px solid var(--verde);
     }
     .btn {
       display: inline-block;
       background: var(--rojo);
       color: white !important;
       text-decoration: none;
-      padding: 0.65rem 1.3rem;
-      border-radius: 4px;
-      margin: 0.5rem 0.5rem 0 0;
-      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      margin: 0.6rem 0.6rem 0 0;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.15s;
     }
-    .btn:hover { background: #b71c1c; }
+    .btn:hover {
+      background: #b71c1c;
+      transform: translateY(-2px);
+    }
     .btn-whatsapp { background: #25d366; }
     .btn-whatsapp:hover { background: #128c7e; }
+    .articulo {
+      background: #fbfbfb;
+      padding: 1.6rem;
+      border-radius: 6px;
+      margin: 2.2rem 0;
+      border: 1px solid #eee;
+    }
+    .articulo h3 {
+      margin-top: 0;
+      color: var(--rojo);
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 2px solid var(--rojo);
+      color: var(--negro);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    footer a {
+      color: var(--verde);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover { text-decoration: underline; }
     @media (max-width: 600px) {
-      body { padding: 1rem; }
-      h2 { font-size: 1.25rem; }
-      .btn { display: block; margin: 0.5rem 0; }
+      body { padding: 1.2rem; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.35rem; }
+      .btn { display: block; margin: 0.7rem 0; }
+      .articulo { padding: 1.2rem; }
     }
   </style>
 </head>
 <body>
+  <main>
+    <h1>🌱 REPÚBLICA DE LA ESPERANZA</h1>
+    <p style="text-align:center; color:var(--negro); font-size:1.15rem; margin-bottom:2.2rem;">
+      <strong>Movimiento por la Salvación de la República (MSR)</strong><br>
+      <em>Por una República democrática, popular y revolucionaria</em>
+    </p>
 
-<h2>¡ÚNETE A LA LUCHA POR UNA REPÚBLICA DEMOCRÁTICA, POPULAR Y REVOLUCIONARIA!</h2>
-<p>El Movimiento por la Salvación de la República convoca a todas las fuerzas populares a organizarse, resistir y construir el futuro que merecemos.</p>
+    <!-- Artículo 1 -->
+    <section class="articulo">
+      <h3>LA REPÚBLICA QUE NOS ARREBATARON</h3>
+      <p>El 18 de febrero de 1865, el pueblo dominicano, tras una guerra heroica, logró restaurar su independencia frente a la anexión española. Pero la República no fue solo un acto fundacional: fue una promesa —de justicia agraria, educación popular, soberanía y dignidad.</p>
+      <p>Esa promesa fue traicionada. Las oligarquías, aliadas al capital extranjero, convirtieron la República en una fachada para la explotación. Hoy, más de 150 años después, el pueblo vuelve a levantar la bandera tricolor —no como símbolo de Estado, sino como <strong>juramento de lucha colectiva</strong>.</p>
+      <blockquote>
+        “No queremos una República de palacios y caudillos, sino una República de escuelas, hospitales y cooperativas.”
+      </blockquote>
+    </section>
 
-<h2>✊ SOBRE NOSOTROS ✊</h2>
-<p>El <strong>Movimiento por la Salvación de la República (MSR)</strong> nace como respuesta a la crisis moral, política y económica que asfixia a nuestro pueblo.</p>
-<p>Inspirados en el pensamiento de Hostos, los restauradores y las luchas populares del siglo XX, nos proponemos construir una República que garantice la justicia, la soberanía y la dignidad humana.</p>
+    <!-- Artículo 2 -->
+    <section class="articulo">
+      <h3>PROGRAMA MÍNIMO DEL MSR</h3>
+      
+      <h4>1. Soberanía Nacional</h4>
+      <p>• Ruptura inmediata con los acuerdos neocoloniales (Tratado de Libre Comercio con EE.UU., acuerdos con el FMI).<br>
+      • Nacionalización de los recursos estratégicos: minas, energía, agua y telecomunicaciones.<br>
+      • Rechazo a las bases militares extranjeras y ejercicios conjuntos con fuerzas imperiales.</p>
 
-<h2>NUESTROS VALORES</h2>
+      <h4>2. Justicia Social</h4>
+      <p>• Reforma agraria integral: tierra para quien la trabaja.<br>
+      • Salario mínimo vital y móvil, indexado a la canasta básica.<br>
+      • Educación y salud públicas, universales y gratuitas.<br>
+      • Jubilación digna a los 60 años con el 80% del último salario.</p>
 
-<h3>Solidaridad</h3>
-<p>Actuamos con empatía y compromiso con las luchas del pueblo trabajador, campesino y marginado.</p>
+      <h4>3. Democracia Popular</h4>
+      <p>• Asambleas populares barriales y rurales con poder decisorio.<br>
+      • Revocabilidad de mandatos para cargos públicos.<br>
+      • Medios de comunicación comunitarios y estatales al servicio del pueblo.</p>
+    </section>
 
-<h3>Justicia Social</h3>
-<p>Defendemos la redistribución de la riqueza, la educación y salud públicas, y los derechos de todos los sectores oprimidos.</p>
+    <!-- Artículo 3 -->
+    <section class="articulo">
+      <h3>MEMORIA, VERDAD Y JUSTICIA</h3>
+      <p>Exigimos la apertura de todos los archivos del Estado sobre las dictaduras, las masacres (Parsley, Haitianos en 1937; Palma Sola, 1962; Guayubín, 2000) y los desaparecidos.</p>
+      <p>El MSR propone una <strong>Comisión Nacional de la Verdad y la Reparación Popular</strong>, con participación de víctimas, organizaciones sociales y juristas independientes.</p>
+      <p>Ningún olvido. Ningún perdón sin justicia.</p>
+    </section>
 
-<h3>Antiimperialismo</h3>
-<p>Rechazamos toda forma de dominación extranjera y luchamos por la soberanía nacional en todos los ámbitos.</p>
+    <!-- Artículo 4 -->
+    <section class="articulo">
+      <h3>INTERNACIONALISMO SOLIDARIO</h3>
+      <p>La lucha dominicana es parte de la lucha del Sur Global. Nos hermanamos con:</p>
+      <p>• El pueblo palestino en su resistencia contra el apartheid sionista.<br>
+      • Las revoluciones de Cuba, Venezuela y Nicaragua en defensa de su soberanía.<br>
+      • Los movimientos indígenas del Abya Yala por la Pachamama y la autodeterminación.<br>
+      • La diáspora caribeña y afrolatina en su lucha antirracista en el norte.</p>
+      <p>Defendemos la integración latinoamericana y caribeña: ALBA-TCP, CELAC, Petrocaribe.</p>
+    </section>
 
-<h2>INTERNACIONAL</h2>
-<p>El mundo multipolar avanza. La lucha antiimperialista se fortalece en cada rincón del Sur Global.</p>
+    <!-- Artículo 5 -->
+    <section class="articulo">
+      <h3>DIÁSPORA: NUESTRA FUERZA EN EL EXTERIOR</h3>
+      <p>Más de 2.5 millones de dominicanos y dominicanas viven fuera del país. La diáspora no es “remesas”: es <strong>conciencia, organización y resistencia transnacional</strong>.</p>
+      <p>El MSR propone:</p>
+      <p>• Derecho al voto desde el exterior en todas las elecciones.<br>
+      • Consulados populares gestionados por colectivos migrantes.<br>
+      • Programas de retorno voluntario con garantías de vivienda y trabajo digno.<br>
+      • Apoyo a redes de solidaridad con otros pueblos migrantes.</p>
+    </section>
 
-<h2>DIÁSPORA</h2>
-<p>La diáspora dominicana constituye una de las fuerzas más dinámicas y solidarias de la nación. Se estima que más de <strong>2.5 millones de dominicanos y dominicanas</strong> viven en el exterior.</p>
-<p>El MSR reconoce a la diáspora como parte inseparable del pueblo dominicano.</p>
+    <!-- Artículo 6 -->
+    <section class="articulo">
+      <h3>FEMINISMOS Y DIVERSIDAD</h3>
+      <p>El patriarcado y el capitalismo se sostienen mutuamente. Nuestra República será feminista o no será.</p>
+      <p>• Legalización del aborto en las tres causales y camino hacia la despenalización total.<br>
+      • Erradicación de la violencia machista con tribunales especializados y casas de acogida.<br>
+      • Reconocimiento pleno de derechos para personas LGTBIQ+: matrimonio igualitario, identidad de género autodeterminada.<br>
+      • Cuotas del 50% en todos los espacios de poder del MSR y en listas electorales.</p>
+    </section>
 
-<h2>⚖️ DERECHOS HUMANOS ⚖️</h2>
+    <!-- Sección: Valores -->
+    <h2>NUESTROS VALORES</h2>
 
-<h3>Declaración Universal de Derechos Humanos</h3>
-<p>Todos los seres humanos nacen libres e iguales en dignidad y derechos.</p>
+    <h3>Solidaridad</h3>
+    <p>No hay libertad individual sin liberación colectiva. Actuamos desde la empatía material: compartimos lo que tenemos, defendemos a quien está atacado, y construimos en comunidad.</p>
 
-<h2>DONACIONES</h2>
-<p>Próximamente: plataforma segura para aportes solidarios.</p>
+    <h3>Justicia Social</h3>
+    <p>La riqueza es social. La explotación, el racismo y la exclusión son violencias estructurales que combatimos con redistribución, educación crítica y poder popular.</p>
 
-<h2>✉️ CONTACTO</h2>
+    <h3>Antiimperialismo</h3>
+    <p>Rechazamos toda forma de dominación extranjera: económica, militar, cultural o mediática. La soberanía no se negocia — se conquista y se defiende.</p>
 
-<h3>Escríbenos</h3>
-<div class="contacto">
-  <p>Santo Domingo, República Dominicana<br>
-  <strong>✉️ contacto@republicaesperanza.org</strong></p>
-</div>
+    <!-- Contacto -->
+    <h2>✉️ CONTACTO & ORGANIZACIÓN</h2>
 
-<h3>Únete a Nosotros</h3>
-<a href="https://wa.me/18290000000?text=Hola,%20quiero%20unirme%20al%20MSR" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
-<a href="mailto:contacto@republicaesperanza.org" class="btn">✉️ Enviar Correo</a>
+    <h3>Escríbenos</h3>
+    <div class="contacto">
+      <p><strong>Santo Domingo, República Dominicana</strong><br>
+      📧 <strong>contacto@republicaesperanza.org</strong><br>
+      📱 <strong>+1 (829) 000-0000</strong> (solo WhatsApp)</p>
+    </div>
 
-<blockquote>
-  “La esperanza no es un sentimiento, es una decisión política.”
-</blockquote>
+    <h3>Únete a Nosotros</h3>
+    <a href="https://wa.me/18290000000?text=Hola,%20soy%20de%20[ciudad/país]%20y%20quiero%20organizarme%20con%20el%20MSR." target="_blank" rel="noopener" class="btn btn-whatsapp" aria-label="Únete por WhatsApp">💬 WhatsApp</a>
+    <a href="mailto:contacto@republicaesperanza.org?subject=Quiero%20organizarme%20con%20el%20MSR&body=Soy%20de%20[ciudad]%2C%20trabajo%20en%20[actividad]%2C%20y%20quiero%20colaborar%20con%3A%20[ideas]" class="btn" aria-label="Envía un correo para unirte">✉️ Correo</a>
 
+    <blockquote>
+      “La esperanza no es un sentimiento, es una decisión política. Y la decisión se toma en la calle, en la asamblea, en la huelga, en la siembra colectiva.”
+    </blockquote>
+  </main>
+
+  <footer>
+    <p>
+      ✊ Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a> • 
+      Código libre en <a href="https://github.com/Ortiz102158/republica-espelido" target="_blank" rel="noopener">GitHub</a>
+    </p>
+    <p>
+      Construido por y para el pueblo dominicano — en memoria de los caídos, en lucha por los que vienen.<br>
+      <strong>¡La República será del pueblo o no será!</strong>
+    </p>
+  </footer>
 </body>
 </html>
